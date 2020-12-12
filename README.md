@@ -25,8 +25,24 @@ BFC
 
 **[⬆ 回到顶部](#目录结构)**
 
-## 如何实现使用CSS实现文字截断效果？
-文字截断效果
+## 如何使用CSS实现文字截断效果？
+1. 单行文字截断：
+```
+.truncate-single-line {
+  white-space: nowrap;     /* 文字不换行 */
+  overflow: hidden;        /* 文字超出容器隐藏内容 */
+  text-overflow: ellipsis; /* 使用省略号显示文字 */
+}
+```
+2. 多行文字截断
+```
+.truncate-multi-lines {
+  display: -webkit-box;         /* 使用-webkit-box布局显示（稍微有些奇怪） */
+  -webkit-line-clamp: 3;        /* 显示的行数 */
+  -webkit-box-orient: vertical; /* 垂直方向显示内容 */
+}
+```
+3. 使用相对/绝对定位（positive:relative/absolute;）配合伪类元素(:after)进行实现
 
 **[⬆ 回到顶部](#目录结构)**
 
