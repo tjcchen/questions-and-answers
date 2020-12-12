@@ -98,7 +98,7 @@ BFC是Block Formatting Context的缩写，被称作“块级格式化上下文�
 具体的做法通常有以下几种：
 1. 使用媒体查询（Media Query）。
 2. 使用CSS `rem` 像素单位，当不同设备浏览器的尺寸宽度变窄时，动态调节html根元素字体的大小，以实现样式的动态适配。
-3. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com)，于此同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
+3. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com) 以及 [https://m.baidu.com](https://m.baidu.com)，于此同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
 4. 采用动态设置meta viewport的方式（待更新）。
 
 **[⬆ 回到顶部](#目录结构)**
