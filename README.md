@@ -18,14 +18,42 @@
 2. 存储变量
 3. 封装私有变量
 
-优点：避免变量污染全局作用域。
+优点：避免变量污染全局作用域。  
 缺点：闭包变量常驻于内存当中，会增大内存的使用量，使用不当容易造成内存泄露。
 
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请解释下浮动问题以及相应的解决方案？
-清除浮动
+在使用CSS布局样式时，当某个元素使用了浮动属性（`float:left/right;`），会导致两个问题：  
+1. 与浮动元素同级的非浮动元素会跟随其后
+2. 父元素的高度无法被撑开，影响总体展示效果
 
+清除浮动（`clearfix`）的几种方式：
+1. 使用额外的标签（不推荐）
+```
+<div style="clear:both;"></div>
+```
+2. 使用after伪元素
+```
+.container:after {
+  content: "";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+```
+3. 推荐方式
+```
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+```
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请说说你对BFC的理解以及相应的应用场景？
@@ -50,7 +78,7 @@ BFC
   -webkit-box-orient: vertical; /* 垂直方向显示内容 */
 }
 ```
-3. 使用相对/绝对定位（positive:relative/absolute;）配合伪类元素(:after)进行实现
+3. 使用相对/绝对定位（positive:relative/absolute;）配合伪元素(:after)进行实现
 
 **[⬆ 回到顶部](#目录结构)**
 
