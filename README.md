@@ -122,7 +122,46 @@ ES2017中的`async`/`await`是为了更加便捷的实现异步编程而产生�
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请说说你对前端模块化编程的理解?
-前端模块化
+前端模块化编程的出现，主要是为了解决前端领域两个一直存在的问题。  
+1. 块级作用域的问题
+2. 不同js文件之间相互依赖的问题
+
+除此之外，模块化编程还使得前端开发变得更加工程化，易于代码的开发和维护。  
+
+常见的模块化标准有CommonJS，AMD(Asynchronous Module Definition)，和ES Module。其中，CommonJS为Node.js的一套模块化规范，运行在Node环境下，使用require函数和module.exports对象来实现模块的导入导出。例如：  
+```
+const moduleA = require('./moduleA'); // 导入（引用）moduleA
+module.exports = moduleA;             // 导出（定义）moduleA
+```
+AMD是一套运行在浏览器端的模块化规范，不同于CommonJS的同步加载，AMD默认采用异步模块加载。分别使用require和define函数来实现引用和定义。此处使用[requirejs](https://requirejs.org/)举例：
+```
+// 定义模块A - moduleA
+define('moduleA', ['moduleB'], function(moduleB) {
+  // 1. 第一个参数moduleA为模块A的名称
+  // 2. 第二个参数moduleB为moduleA所依赖的其他模块
+  // 3. 第三个参数中的moduleB为模块B所导出的内容
+
+  return 'moduleA ' + moduleB;
+})；
+```
+```
+// 引用模块A
+require(['moduleA'], function(moduleA) {
+  console.log(moduleA); // 输出'moduleA moduleB'
+});
+
+```
+ES Module是在ES6中引入的模块化规范，目前使用也最为广泛，使用import和export两个关键字进行导入导出，例如：
+```
+// moduleA.js - 定义和导出模块A
+const moduleA = new Date().getTime(); // 定义模块A
+export default moduleA;               // 导出模块A
+```
+```
+// index.js
+import moduleA from './moduleA';      // 导入模块A
+console.log(moduleA);                 // 使用模块A
+```
 
 **[⬆ 回到顶部](#目录结构)**
 
