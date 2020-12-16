@@ -173,7 +173,29 @@ git reset/rebase/revert/merge/fetch 的区别是什么
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请说说你对虚拟DOM的理解？
-虚拟DOM的理解
+虚拟DOM的实质是用JavaScript对象去描述真实DOM的节点。它的出现使得页面渲染的性能有了很大程度的提升，主要归功于diff函数在做更新操作时，通过新旧虚拟DOM树的比对，只去更新那些需要更新的DOM节点或者属性，并将结果其渲染在真实DOM上。虚拟DOM其实并不神秘，在使用虚拟DOM描述一个Div元素时，其结构大致为：
+```
+<div id="app">virtual dom</div>
+
+装换为：
+
+const vdom = {
+  tagName: 'div',
+  attrs: {
+    id: 'app'
+  },
+  children: [
+    'virtual dom'
+  ]
+};
+```
+以ReactJS为例来说明，构建虚拟DOM的几个重要函数：`createElement`、`render`、`mount`、`diff`.  
+createElement(): 通过该方法来创建虚拟DOM树。  
+render(): 通过该方法来将虚拟DOM树转换为真实DOM节点。  
+mount(): 将真实DOM节点挂载到root节点下。  
+diff(): 当有更新操作时（属性更新或者节点更新），进行新旧两棵虚拟DOM树的比对，只去更新那些需要更新的部分。
+  
+具体代码实现部分，可参考[代码示例](https://github.com/tjcchen/simple-virtual-dom/)
 
 **[⬆ 回到顶部](#目录结构)**
 
