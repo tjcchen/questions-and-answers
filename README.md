@@ -128,14 +128,15 @@ ES2017中的`async`/`await`是为了更加便捷的实现异步编程而产生�
 
 除此之外，模块化编程还使得前端开发变得更加工程化，易于代码的开发和维护。  
 
-常见的模块化标准有CommonJS，AMD(Asynchronous Module Definition)，和ES Module。其中，CommonJS为Node.js的一套模块化规范，运行在Node环境下，使用require函数和module.exports对象来实现模块的导入导出。例如：  
+常见的模块化标准有CommonJS、AMD、ES Module。  
+其中，CommonJS为Node.js的一套模块化规范，运行在Node环境下，使用require函数和module.exports对象来实现模块的导入导出。例如：  
 ```
 const moduleA = require('./moduleA'); // 导入（引用）moduleA
 module.exports = moduleA;             // 导出（定义）moduleA
 ```
-AMD是一套运行在浏览器端的模块化规范，不同于CommonJS的同步加载，AMD默认采用异步模块加载。分别使用require和define函数来实现引用和定义。此处使用[requirejs](https://requirejs.org/)举例：
+AMD是一套运行在浏览器端的模块化规范，不同于CommonJS的同步加载，AMD默认采用异步模块加载的方式。分别使用require和define函数来实现引用和定义。此处使用[require.js](https://requirejs.org/)进行举例：
 ```
-// 定义模块A - moduleA
+// 定义模块A
 define('moduleA', ['moduleB'], function(moduleB) {
   // 1. 第一个参数moduleA为模块A的名称
   // 2. 第二个参数moduleB为moduleA所依赖的其他模块
@@ -153,7 +154,7 @@ require(['moduleA'], function(moduleA) {
 ```
 ES Module是在ES6中引入的模块化规范，目前使用也最为广泛，使用import和export两个关键字进行导入导出，例如：
 ```
-// moduleA.js - 定义和导出模块A
+// moduleA.js
 const moduleA = new Date().getTime(); // 定义模块A
 export default moduleA;               // 导出模块A
 ```
@@ -162,6 +163,7 @@ export default moduleA;               // 导出模块A
 import moduleA from './moduleA';      // 导入模块A
 console.log(moduleA);                 // 使用模块A
 ```
+特别值得一提的是UMD并不是一套模块化规范，它只是抹平不同模块差异的一种编码模式，使得编写的模块在不同环境都能够正常运行。具体请参考[代码示例](https://github.com/tjcchen/interviews/blob/master/UMD/random.js)。
 
 **[⬆ 回到顶部](#目录结构)**
 
