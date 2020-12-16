@@ -112,7 +112,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 **[⬆ 回到顶部](#目录结构)**
 
 ## ES2017中async和await关键字有什么作用？
-ES2017中的`async`/`await`是为了更加便捷的实现异步编程而产生的新语法，其本质是包裹在`Promise`之上的语法糖。当使用`async`修饰某个函数后，该函数的返回值变成了一个`Promise`对象，而不再是直接返回一个值了。而`await`关键字只能放在`async`函数内部才能生效，`await`应该被放置在任何基于`Promise`的异步方法（Eg: `Promise.resolve('ES2017')`）之前，此时，`await`关键字会让代码逻辑暂停到被放置的那行代码，直到`Promise`对象已完成（`fulfilled`），才会去返回结果。
+ES2017中的async/await是为了更加便捷的实现异步编程而产生的新语法，其本质是包裹在Promise之上的语法糖。当使用async修饰某个函数后，该函数的返回值变成了一个Promise对象，而不再是直接返回一个值了。而await关键字只能放在async函数内部才能生效，await应该被放置在任何基于Promise的异步方法（Eg: Promise.resolve('ES2017')）之前，此时，await关键字会让代码逻辑暂停到被放置的那行代码，直到Promise对象已完成（fulfilled），才会去返回结果。
 
 **[⬆ 回到顶部](#目录结构)**
 
@@ -173,7 +173,7 @@ git reset/rebase/revert/merge/fetch 的区别是什么
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请说说你对虚拟DOM的理解？
-虚拟DOM的实质是用JavaScript对象去描述真实DOM的节点。它的出现使得页面渲染的性能有了很大程度的提升，主要归功于diff函数在做更新操作时，通过新旧虚拟DOM树的比对，只去更新那些需要更新的DOM节点或者属性，并将结果其渲染在真实DOM上。虚拟DOM其实并不神秘，在使用虚拟DOM描述一个Div元素时，其结构大致为：
+虚拟DOM的实质是用JavaScript对象去描述真实DOM的节点。它的出现使得页面渲染的性能有了很大程度的提升，主要归功于diff函数在做更新操作时，通过新旧虚拟DOM树的比对，只去更新那些需要更新的DOM节点或者属性，并将结果渲染在真实DOM上。虚拟DOM其实并不神秘，在使用虚拟DOM描述一个Div元素时，其结构大致为：
 ```
 <div id="app">virtual dom</div>
 
@@ -194,7 +194,7 @@ createElement(): 通过该方法来创建虚拟DOM树。
 render(): 通过该方法来将虚拟DOM树转换为真实DOM节点。  
 mount(): 将真实DOM节点挂载到root节点下。  
 diff(): 当有更新操作时（属性更新或者节点更新），进行新旧两棵虚拟DOM树的比对，只去更新那些需要更新的部分。
-  
+
 具体代码实现部分，可参考[代码示例](https://github.com/tjcchen/simple-virtual-dom/)
 
 **[⬆ 回到顶部](#目录结构)**
