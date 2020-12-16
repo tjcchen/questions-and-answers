@@ -138,6 +138,3 @@ git reset/rebase/revert/merge/fetch的区别是什么
 节流，防抖和函数柯里化
 
 **[⬆ 回到顶部](#目录结构)**
-
-## 协议
-[MIT](https://github.com/tjcchen/questions-and-answers/blob/main/LICENSE)
