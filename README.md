@@ -215,7 +215,76 @@ diff(): 当有更新操作时（属性更新或者节点更新），进行新旧
 **[⬆ 回到顶部](#目录结构)**
 
 ## 节流(throttle), 防抖(debounce), 函数柯里化(currying)在实际工程中有什么作用并且简述下其原理?
-节流，防抖和函数柯里化
+节流和防抖的作用类似，主要用于限制高频事件的触发。而函数柯里化使得函数(`function`)的调用变得更加灵活，我们可以一次性传入几个或者多个参数调用函数。类似的例子有：connect(mapStateToProps)(Component) 或者 add(1)(2)(3)；
+
+节流的实现原理：使用时间戳来控制，在一段时间内，某个事件只能触发一次。具体代码实现为：
+```
+const throttle = (fn, delay = 250) => {
+  let last = 0;
+
+  return (...args) => {
+    const that = this;
+    const now = new Date().getTime();
+
+    if (last + delay > now) {
+      return;
+    }
+
+    last = now;
+    return fn.apply(that, args);
+  };
+};
+```
+防抖的实现原理：使用timer来控制一段时间内，某个事件只触发一次。具体代码实现为：
+```
+const debounce = (fn, delay = 250) => {
+  let timerId = null;
+
+  return (...args) => {
+    if (timerId) {
+      clearTimeout(timerId);
+      timerId = null;
+    }
+
+    const that = this;
+
+    timerId = setTimeout(() => {
+      fn.apply(that, args);
+    }, delay);
+  };
+};
+```
+函数柯里化的实现原理：使用`闭包`或者`bind函数`实现函数参数的分开多次传入。这里我们使用闭包来做一个简单的实现：
+```
+const add = (...args) => {
+  let sum = 0;
+
+  function helper(...arguments) {
+    args = args.concat(arguments);
+
+    sum = args.reduce((accum, curr) => {
+      return accum + curr;
+    });
+
+    return helper;
+  };
+
+  helper.toString = function() {
+    return sum;
+  };
+
+  return helper;
+};
+
+const sum = +add(1)(2, 3)(4, 5, 6)(7)(8)(9, 10); // '+'操作符会把字符串转为数字 
+console.log(sum); // 55
+```
+
+节流和防抖的区别在于：节流会每隔一段时间去触发一次高频事件，当用户第一次触发事件时，会去执行一次事件函数调用，以后每隔一段时间都会去触发该事件。而防抖会在用户停止高频事件触发后，间隔一个延迟时间，才去执行一次事件函数调用。
+
+节流应用场景：用户滚轮事件onscroll、用户频繁的提交购物车事件  
+防抖应用场景：窗体拖动事件onresize、用户搜索框触发的输入匹配事件  
+柯里化应用场景：`add(1)(2, 3)(4)(5)`函数、Redux中的`connect`函数将属性和组件联系起来
 
 **[⬆ 回到顶部](#目录结构)**
 
