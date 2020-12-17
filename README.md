@@ -15,7 +15,7 @@
 - [请说说你对前端模块化编程的理解？](#请说说你对前端模块化编程的理解)
 - [Git常规操作当中的reset/rebase/revert/merge/fetch在哪些时候会被用到以及它们的不同之处？](#Git常规操作当中的resetrebaserevertmergefetch在哪些时候会被用到以及它们的不同之处)
 - [请说说你对虚拟DOM的理解？](#请说说你对虚拟DOM的理解)
-- [节流(throttle), 防抖(debounce)和函数柯里化(currying)在实际工程中有什么作用并且简述下其原理？](#节流(throttle)防抖(debounce)和函数柯里化(currying)在实际工程中有什么作用并且简述下其原理)
+- [节流(throttle), 防抖(debounce), 函数柯里化(currying)在实际工程中有什么作用并且简述下其原理？](#节流throttle-防抖debounce-函数柯里化currying在实际工程中有什么作用并且简述下其原理)
 - [说说你对跨域问题的理解？](#说说你对跨域问题的理解)
 - [常见的网站攻击有哪些，如何通过编码做到相应的防护？](#常见的网站攻击有哪些如何通过编码做到相应的防护)
 
