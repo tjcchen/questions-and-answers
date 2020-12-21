@@ -102,8 +102,8 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 **[⬆ 回到顶部](#目录结构)**
 
 ## 如何使用CSS实现文字居中效果？
-  
 1. 设置单行元素居中  
+
 1.1 实现：设置父元素的高度和行高保持一致
 ```
 .div {
@@ -148,6 +148,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 ```
 
 2. 设置多行元素居中  
+
 2.1 实现：使用伪类元素`height:100%; vertical-align:middle;`撑起行高，其他子元素也设置`vertical-align:middle;`
 ```
 .parent {
