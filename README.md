@@ -38,9 +38,16 @@
 2. 父元素的高度无法被撑开，影响总体展示效果
 
 清除浮动（`clearfix`）的几种方式：
-1. 使用额外的标签（不推荐）
+1. 推荐方式
 ```
-<div style="clear:both;"></div>
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
 ```
 2. 使用`:after`伪元素
 ```
@@ -52,17 +59,11 @@
   clear: both;
 }
 ```
-3. 推荐方式
+3. 使用额外的标签（不推荐）
 ```
-.clearfix:before, .clearfix:after {
-  content: "";
-  display: table;
-}
+<div style="clear:both;"></div>
+```
 
-.clearfix:after {
-  clear: both;
-}
-```
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请说说你对BFC的理解以及相应的使用场景？
@@ -101,7 +102,78 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 **[⬆ 回到顶部](#目录结构)**
 
 ## 如何使用CSS实现文字居中效果？
-CSS实现文字居中效果的几种方式
+  
+1. 设置单行元素居中  
+1.1 实现：设置父元素的高度和行高保持一致
+```
+.div {
+  width: 200px;
+
+  /* 关键代码 */
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+}
+```
+1.2 实现：设置父元素`display:table-cell;`或者使用`table标签`来实现
+```
+.div {
+  display: table-cell;
+}
+```
+1.3 实现：使用`相对定位`或者`transform`实现
+```
+.parent {
+  position: relative;
+}
+.use-transform {
+  positive: absolute;
+  transform: translate(-50%, -50%);
+}
+```
+1.4 实现：通过父元素flex布局属性实现(这些属性同样可以居中多行元素)
+```
+.parent {
+  display: flex;
+  align-items: center;    /* 垂直居中 */
+  justify-conent: center; /* 水平居中 */
+}
+```
+1.5 实现：使用父元素grid布局属性实现(只能单行)
+```
+.parent {
+  display: grid;
+  place-items: center;
+}
+```
+
+2. 设置多行元素居中  
+2.1 实现：使用伪类元素`height:100%; vertical-align:middle;`撑起行高，其他子元素也设置`vertical-align:middle;`
+```
+.parent {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+.parent .first-child,
+.parent .second-child,
+.parent .third-child {
+  display: inline-block;
+
+  /* 关键代码 */
+  vertical-align: middle;
+}
+/* 关键代码 */
+.parent::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+  positive: relative;
+  display: inline-block;
+}
+```
+2.2 实现：通过`相对绝对定位`配合`top, margin-left, calc`等属性进行实现
 
 **[⬆ 回到顶部](#目录结构)**
 
