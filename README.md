@@ -219,13 +219,17 @@ ES2017中的async/await关键字是为了更加便捷的实现异步编程而产
 - 使用script、link等外部标签引用JS、CSS资源，浏览器会去缓存
 - 使用CDN缓存
 
-4. 减少DNS域名解析时间
+4. 减少cookie的带宽消耗
+- 编码时尽量控制cookie大小体积，消除不必要的cookie
+- 当请求静态资源时，不去发送页面cookie，减少带宽消耗。具体做法将静态资源，如图片等，放在子域名下或者另一个域名下
+
+5. 减少DNS域名解析时间
 - 当网站请求其他网站资源，发出跨域请求时，可以使用dns-prefetch属性。该属性会去让浏览器提前解析跨域DNS，减少由于域名解析带来时间延迟
 ```
 <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
 ```
 
-5. 做网页SEO、HTML结构语义化
+6. 做网页SEO、HTML结构语义化
 - 给网站添加description、keyword等meta标签，让搜索引擎更易爬取到页面内容
 - 前端工程师在写html结构时，应该注意代码结构的语义化，在适当的位置使用`h1-2标签`、`a标签`、`图片alt属性`等
 
