@@ -184,7 +184,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 具体的做法通常有以下几种：
 1. 使用媒体查询（Media Query）。
 2. 使用CSS `rem` 像素单位，当不同设备浏览器的尺寸宽度变窄时，动态调节html根元素字体的大小，以实现样式的动态适配。
-3. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com) 以及 [https://m.baidu.com](https://m.baidu.com)，于此同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
+3. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com) 以及 [https://m.baidu.com](https://m.baidu.com)，同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
 4. 采用动态设置meta viewport的方式（待更新）。
 
 **[⬆ 回到顶部](#目录结构)**
@@ -196,7 +196,7 @@ ES2017中的async/await关键字是为了更加便捷的实现异步编程而产
 
 优点：
 1. 写出的代码更加的简洁、易于维护。
-2. 写出的代码易于代码调试，因为使用async/await关键字后，代码执行的变成了同步的，而Promise无法加断点进行调试。
+2. 写出的代码易于添加断点调试，因为使用async/await关键字后，代码执行的变成了同步的，而Promise无法加断点进行调试。
 
 缺点：
 1. 让代码的执行变得同步化，await之后的代码，会等待await行执行完成后才去执行。
