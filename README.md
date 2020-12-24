@@ -393,6 +393,32 @@ console.log(sum); // 55
 **[⬆ 回到顶部](#目录结构)**
 
 ## 常见的网站攻击有哪些，如何通过编码做到相应的防护？
-XSS, CSRF
+网站的常见攻击有XSS、CSRF、SQL注入。  
+XSS是跨站的脚本攻击(Cross Site Scripting)，是指攻击者将恶意脚本代码注入到网站的一种攻击方式，通过该方式攻击者可以破坏其他用户的网站正常使用，以及窃取用户的敏感信息等。常见的攻击如下：
+1. 攻击者在网站的输入框、或者提交评论等位置输入恶意脚本代码，网站直接将用户输入的内容未经处理存储到了数据库,之后又将这些评论直接输出给其他用户看，这样其他用户在访问的网站页面时就会执行恶意代码，造成危险。
+修复方式：任何用户输入的内容都去进行escape或者encode处理，才能进行后续的操作，例如
+```
+<script>window.location.href='http://hackers-website.com';</script>
+
+转译为：
+
+&lt;script&gt;window.location.href=&apos;http://hackers-website.com&apos;;&lt;/script&gt;
+```
+2. 攻击者给受害者发送钓鱼邮件，邮件中的url里含有恶意脚本，受害者点击链接后，被跳转到某网站，网站直接将url所带的参数输出到页面上。此时用户的敏感信息就会有被盗取的风险。例如：
+```
+钓鱼网站中包含的链接为：
+
+http://example.com?query=<img src onerror="alert(document.cookie);" />
+
+网站中的部分代码为：
+
+let query = new URL(window.location).searchParams.get('query')
+let queryElmt = document.getElementById('query');
+query.innerHTML = query; 
+
+// 此时query元素的内容为：query.innerHTML = <img src onerror="alert(document.cookie)" />;
+// 用户的敏感信息就有被盗取的风险
+```
+修复方式：任何赋值给元素innerHTML的内容都要谨慎处理，只去把可信的html内容赋值给它。其他的内容可以先去进行escape转码后，再去赋值。  
 
 **[⬆ 回到顶部](#目录结构)**
