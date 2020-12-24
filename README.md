@@ -421,4 +421,16 @@ query.innerHTML = query;
 ```
 修复方式：任何赋值给元素innerHTML的内容都要谨慎处理，只去把可信的html内容赋值给它。其他的内容可以先去进行escape转码后，再去赋值。  
 
+3. 其他的一些防止XSS攻击的方法可以配合服务器端一起来做，比如设置内容安全策略响应头部(`Content-Security-Policy`)来限制脚本的来源，或者设置HTST(`HTTP Strict-Transport-Security`)响应头部来限制只能通过https协议访问网站。
+服务器端的代码示例：
+```
+Content-Security-Policy:
+
+response.setHeader("Content-Security-Policy", "script-src http://www.example.com http://www.example2.com");
+
+Strict-Transport-Security:
+
+response.setHeader("Strict-Transport-Security", "max-age=172800");
+```
+
 **[⬆ 回到顶部](#目录结构)**
