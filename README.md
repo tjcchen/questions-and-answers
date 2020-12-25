@@ -440,6 +440,40 @@ response.setHeader("Strict-Transport-Security", "max-age=172800")；
 Set-Cookie: id=a3fWa; Expires=Thu, 21 Oct 2021 07:28:00 GMT; Secure; HttpOnly
 ```
 
+CSRF攻击是跨站请求伪造攻击(Cross Site Request Forgery)，攻击者通过获取真实用户的登录认证信息(authentication)，来向服务发起伪造请求，
+从而达到攻击网站用户的效果。常见攻击为修改用户密码、删除用户账号、和进行银行转账等。
+
+举一个简单的例子来说明原理：
+- 当用户通过用户名和密码登录某银行网站(http://www.bank.com)后，银行向用户发送了一个session_token用来记录用户的登录状态（使用cookie来存储）
+- 这时，该用户收到了一封钓鱼邮件，诱导用户跳转到某非法网站，网站的部分代码大致如下：
+```
+<body onload="document.csrfForm.submit()">
+  <h3>Forgery Form Used for CSRF DEMO</h3>
+  <form action="http://www.bank.com/transfer" method="POST" target="hiddenFrame" name="csrfForm">
+    <input type="hidden" name="name" value="bob" />
+    <input type="hidden" name="amount" value="100000" />
+  </form>
+  <iframe name="hiddenFrame" style="display:none;"></iframe>
+</body>
+```
+- 上面所示的这段代码会在页面加载完成后，向银行发送一个post请求，用来伪造用户的操作。大致请求为：
+```
+url: http://www.bank.com/transfer
+method: POST
+name: bob
+amount: 100000
+session_token: ejicnieu448unfnd32993jenfncx
+```
+- 此时由于钓鱼页面发来的请求和用户自己操作时的请求一样，同样都带有session_token，而且其他参数也都一致，所以银行认为是用户的操作，完成了转账操作。
+- 至此，一个简单的CSRF攻击就得以实现
+
+修复方式：
+- 使用CSRF Token的方式，从服务器向浏览器发送token，下次用户再访问网站其他页面时，会将CSRF Token和Session Token一个发回网站进行认证。(推荐)
+- 在用户关键操作时，如转账、修改密码时，再次认证用户登录信息，通过输入用户名密码、填写验证码、或者发送短信等方式。
+
+
+SQL注入是一种常见的数据库攻击，在代码层面，后端工程师需要使用参数化SQL的方式，避免该攻击。例如在Java当中使用PreparedStatements。
+
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请简述下Session Token和JWT的区别和应用场景？
