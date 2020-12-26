@@ -432,10 +432,10 @@ response.setHeader("Content-Security-Policy", "script-src http://www.example.com
 
 Strict-Transport-Security:
 
-response.setHeader("Strict-Transport-Security", "max-age=172800")；
+response.setHeader("Strict-Transport-Security", "max-age=172800");
 ```
 
-4. 除此之外，还可以在服务器端给SetCookie设置HttpOnly属性，保证cookie无法通过脚本的document.cookie进行访问，避免敏感信息XSS盗取。HttpCookie通常用在记录服务器端的数据，而浏览器并不需要，如用户登录状态等。代码示例：
+4. 除此之外，还可以在服务器端给SetCookie设置HttpOnly属性，保证cookie无法通过脚本的document.cookie进行访问，避免敏感信息XSS盗取。代码示例：
 ```
 Set-Cookie: id=a3fWa; Expires=Thu, 21 Oct 2021 07:28:00 GMT; Secure; HttpOnly
 ```
