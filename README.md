@@ -488,4 +488,9 @@ JWT(Json Web Token)技术的实现强烈依靠加密算法，需要将用户的�
 需要注意的是：Session Token当中包含的信息只是用户登录的凭证，可以是用户的ID等，通常会临时保存在缓存(Redis/Memcached)或者数据库(Postgre/MongoDB)当中，就算不小心token被盗用了，也不会产生影响，因为该凭证只和自己的服务器有联系。
 而JWT发回给用户的token是包含了用户名、密码等信息的密文，因此密文的安全性变得十分重要。
 
+一个简单的通过curl模拟发送jwt到服务器端的例子如下：
+```
+curl -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxMDAwMDEsInVzZXJuYW1lIjoid2VicGFjayIsImVtYWlsIjoidGVzdEBxcS5jb20iLCJhdmF0YXIiOiIvL3FwaWMudXJsLmNuL2ZlZWRzX3BpYy9hak5WZHFIWkxMQks3UXlKbmljTXVpY3dXVnJLaHVJYzQyNndFWWJJYVNsYVhaUkR1cXMyaDRYQS8iLCJ0eXBlIjoyfSwiZXhwIjoxNTY5NjYyNDkyLCJpYXQiOjE1NjkwNTc2OTJ9._cc7B2Q565rL-hKK25Lppw4IDVEkQP17qky0boVTlrA'
+-X POST -d "title=test&content=test&thumbnail=http://www.tjcchen.cn/love.png" "http://127.0.0.1:8001/v1/review/new"
+```
 **[⬆ 回到顶部](#目录结构)**
