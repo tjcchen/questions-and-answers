@@ -445,7 +445,7 @@ CSRF攻击是跨站请求伪造攻击(Cross Site Request Forgery)，攻击者通
 从而达到攻击网站用户的效果。常见攻击为修改用户密码、删除用户账号、和进行银行转账等。
 
 举一个简单的例子来说明原理：
-- 当用户通过用户名和密码登录某银行网站(http://www.bank.com)后，银行向用户发送了一个session_token用来记录用户的登录状态（使用cookie来存储）
+- 当用户通过用户名和密码登录某银行网站(eg: http://www.bank.com)后，银行向用户发送了一个session_token用来记录用户的登录状态（使用cookie来存储）
 - 这时，该用户收到了一封钓鱼邮件，诱导用户跳转到某非法网站，网站的部分代码大致如下：
 ```
 <body onload="document.csrfForm.submit()">
