@@ -497,6 +497,36 @@ curl -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7
 **[⬆ 回到顶部](#目录结构)**
 
 ## 说说你对Flex布局和Grid布局的理解?
-Flex布局和Grid布局
+Flex布局和Grid布局都是为了更好的实现响应式布局而产生的CSS新语法。这两种布局多用于响应式网站页面和手机端页面。
+
+Flex布局  
+实现Flex布局，一共有两部分的内容需要注意：
+1. 第一步是要在父容器设置 `display:flex;` 属性，告诉浏览器，父元素中包裹的子元素要使用flex方式进行布局了
+2. 第二步是要在子元素当中设置 `flex:1 1 0;` 属性，用于告诉浏览器，该子元素要以多少比例进行缩放，子元素会根据window.size的一定比例动态设置子元素宽度
+```
+<div class="container">
+  <div class="item1"></div>
+  <div class="item2"></div>
+  <div class="item3"></div>
+</div>
+
+CSS:
+
+.container {
+  display: flex;
+  flex-direction: row; /* 默认方向为row，会横向展示item的内容; 另一个值为 column */
+  flex-wrap: wrap; /* 浏览器缩小会换行 */
+  align-items: stretch; /* 默认值，会纵向撑慢容器；其他值还有 flex-start, flex-end, center */
+}
+.container .item1 {
+  flex: 1; /* 等同于 flex: 1 1 0; 代表 flex: flex-grow flex-shrink flex-basis; */
+}
+.container .item2 {
+  flex: 2; /* 会以 flex:1; 两倍的宽度进行缩放 */
+}
+.container .item3 {
+  flex: 1 1 30%; /* 此时flex-basis为30%，为默认宽度 */
+}
+```
 
 **[⬆ 回到顶部](#目录结构)**
