@@ -546,6 +546,13 @@ Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将
   /* 其中 1fr 为一个新单位，为1个fraction，会去占用父元素的剩下可用空间；2fr代表会占用1fr的两倍空间 */
   grid-template-columns: 220px 1fr auto;
 
+  /* [有用]：auto-fit属性会去自动伸缩子元素宽度去填满容器 */
+  /* 而 auto-fill 会去使用空元素占位置填满剩余的空间 */
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+
+  /* 该属性会去自动使用子元素填满父容器，当元素跨行/列的子元素所占宽高不合理时 */
+  grid-auto-flow: dense;
+
   /* 该属性设置默认行的高度，最小高度为150px */
   grid-auto-rows: minmax(150px, auto);
 
