@@ -515,9 +515,10 @@ CSS:
 .container {
   display: flex;
   flex-direction: row; /* 默认方向为row，会横向展示item的内容; 另一个值为 column */
-  flex-wrap: wrap; /* 浏览器缩小会换行 */
+  flex-wrap: wrap; /* 浏览器宽度缩小会换行 */
   align-items: stretch; /* 默认值，会纵向撑慢容器；其他值还有 flex-start, flex-end, center */
 }
+
 .container .item1 {
   flex: 1; /* 等同于 flex: 1 1 0; 代表 flex: flex-grow flex-shrink flex-basis; */
 }
@@ -528,5 +529,48 @@ CSS:
   flex: 1 1 30%; /* 此时flex-basis为30%，为默认宽度 */
 }
 ```
+
+Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将页面元素划分为一个一个的网格，然后指明每个子元素需要占取的网格数量。实现Grid布局也有两个部分
+需要注意，即父元素和子元素部分，但大部分设置都集中在父元素。
+1. 第一步要在父元素中设置 `display: grid;` 属性，除此之外，还要在父元素中指明子元素的网格列数和行数，通过宽度和高度设置，例如：
+```
+.container {
+  display: grid;
+  grid-template-columns: 300px 200px 300px; /* 这里指明一共有三列, 第一列300px, 第二列200px, 第三列300px */
+  grid-template-rows: 200px 100px; /* 这里指明有两行，第一行200px，第二行100px */
+
+  /* 如果有多列，每列宽度一行，也可使用repeat来做重复，下例中的4代码重复4次，即4列 */
+  grid-template-columns: repeat(4, 300px);
+
+  /* 该属性设置有三列，左列宽度固定，为220px，中间列宽度1个fraction，右列宽度为auto为自动填充 */
+  /* 其中 1fr 为一个新单位，为1个fraction，会去占用父元素的剩下可用空间；2fr代表会占用1fr的两倍空间 */
+  grid-template-columns: 220px 1fr auto;
+
+  /* 该属性设置默认行的高度，最小高度为150px */
+  grid-auto-rows: minmax(150px, auto);
+
+  /* 设置网格间距，使用gap */
+  gap: 10px 20px; /* 等于gap-row: 10px; gap-column: 20px; */
+}
+```
+2. 第二步要在子元素中，设置每个元素所占的网格数，例如：
+```
+.container .item1 {
+  grid-column: 1 / 4; /* 等同于：grid-column-start: 1; grid-column-end: 4; */
+  grid-row: 1 / 3;
+}
+
+或者
+
+.container .item2 {
+  grid-column: span 3; /* 元素2占取三列 */
+  grid-row: span 2;    /* 元素2占取两行 */
+}
+```
+
+除此之外，可以使用 `grid-content:end; justify-content:center;` 类似属性，设置父元素的位置，`align-items:center; justify-items:center;` 
+去设置子元素在父元素网格中的位置，以及 `align-self:start; justify-self:end;` 去覆盖父元素设置的位置。
+
+Flex布局和Grid布局的不同之处在于, Flex设置的是单一维度的响应式布局(横轴或者纵轴)，而Grid布局设置的是两个维度的，即横纵维度的布局。
 
 **[⬆ 回到顶部](#目录结构)**
