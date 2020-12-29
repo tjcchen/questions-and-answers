@@ -480,14 +480,18 @@ SQL注入是一种常见的数据库攻击，在代码层面，后端工程师�
 ## 请简述下Session Token和JWT的区别和应用场景？
 首先Session Token和JWT(Json Web Token)都是用于维持用户登录状态的技术。
 
-Session Token技术将用户的登录状态信息保存在cookie当中，从服务器端通过Set-Cookie响应头部发送给浏览器，下次用户在访问网站的其他页面时，还会将相应的Session Token包含在cookie当中，一起发回给服务器
-进行认证，从而实现用户身份信息的认证。该种技术多应用于传统的BS架构（Browser and Server）的网站。
+Session Token技术将用户的登录状态信息保存在cookie当中，从服务器端通过Set-Cookie响应头部发送给浏览器，下次用户在访问网站的其他页面时，还会将相应的Session Token包含在cookie当中，一起发回给服务器进行认证，从而实现用户身份信息的认证。该种技术多应用于传统的BS架构（Browser and Server）的网站。
 
-JWT(Json Web Token)技术的实现强烈依靠加密算法，需要将用户的用户名和密码等登录信息放在一起，进行加密后，以密文的形式发送给客户端。当用户再次进行访问服务器其他功能时(通常以REST API的方式)，
+JWT(Json Web Token)技术的实现强烈依靠加密算法，需要将用户的用户名等信息放在一起，进行加密后，以密文的形式发送给客户端。当用户再次进行访问服务器其他功能时(通常以REST API的方式)，
 还需将JWT的token一起通过http请求头部带给服务器端进行认证。该种技术多用于前后端分离的网站应用，以及Android和IOS手机应用当中。
 
-需要注意的是：Session Token当中包含的信息只是用户登录的凭证，可以是用户的ID等，通常会临时保存在缓存(Redis/Memcached)或者数据库(Postgre/MongoDB)当中，就算不小心token被盗用了，也不会产生影响，因为该凭证只和自己的服务器有联系。
-而JWT发回给用户的token是包含了用户名、密码等信息的密文，因此密文的安全性变得十分重要。
+需要注意的是：Session Token当中包含的信息只是用户登录的凭证，可以是用户的ID等，通常会临时保存在服务器端的缓存(Redis/Memcached)或者数据库(Postgre/MongoDB)当中，就算不小心token被盗用了，也不会产生影响，因为该凭证只和自己的服务器有对应关系。
+而JWT发回给用户的token是包含了用户名、邮箱等信息的密文，会被保存在客户端，因此密文的安全性变得十分重要。
+
+经过加密的JWT token，通常包含三个部分：头部(header)，消息体(payload)，签名(signature)。使用点分隔符（.）进行分割。例如：  
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.  
+eyJkYXRhIjp7ImlkIjoxMDAwMDEsInVzZXJuYW1lIjoid2VicGFjayIsImVtYWlsIjoidGVzdEBxcS5jb20iLCJhdmF0YXIiOiIvL3FwaWMudXJsLmNuL2ZlZWRzX3BpYy9hak5WZHFIWkxMQks3UXlKbmljTXVpY3dXVnJLaHVJYzQyNndFWWJJYVNsYVhaUkR1cXMyaDRYQS8iLCJ0eXBlIjoyfSwiZXhwIjoxNTY5NjYyNDkyLCJpYXQiOjE1NjkwNTc2OTJ9.  
+_cc7B2Q565rL-hKK25Lppw4IDVEkQP17qky0boVTlrA
 
 一个简单的通过curl模拟发送jwt到服务器端的例子如下：
 ```
