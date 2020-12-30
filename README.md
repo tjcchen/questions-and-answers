@@ -287,7 +287,84 @@ console.log(moduleA);                 // 使用模块A
 **[⬆ 回到顶部](#目录结构)**
 
 ## Git常规操作当中的reset, rebase, revert, merge, fetch在哪些时候会被用到以及它们的不同之处?
-git reset/rebase/revert/merge/fetch 的区别是什么
+在回答该问题之前，先在这里简述下，将一个本地仓库添加到github远端仓库的过程：
+- 本地有一个文件夹，我们把它变成一个拥有git版本记录功能仓库：`git init`
+- 在本地添加完文件，进行了本地commit操作后，把该仓库推送到github远端：`git remote add origin git@github.com:tjcchen/test.git`  
+注意：这里的origin是远端地址的别名，远端地址指的是 `git@github.com:tjcchen/test.git`
+- 将本地代码推送到远端：`git push -u origin main`  
+注意：这里的 `-u` 是 `--set-upstream`，会把远端的main分支设置为默认上游分支，下次直接输入 `git push` 就可以推送到远端main分支
+- 此时可以使用 `git remote -v` 查看 push 和 fetch 的远端地址，例如：
+```
+origin	git@github.com:tjcchen/test.git (fetch)
+origin	git@github.com:tjcchen/test.git (push)
+```
+
+`git reset`  
+git reset命令会去将本地提交退回到之前的某一个版本，但是在指定版本提交之后的代码修改依旧存在。eg:
+```
+git reset 55646eca9bcb6f5413039b020b1f287b507ea2eb
+```
+
+如果想要退回到之前某一个版本，不仅log信息会退回到之前版本，相应的代码也会回到之前的状态，需要使用 `--hard` 这个flag。eg：
+```
+git reset --hard 55646eca9bcb6f5413039b020b1f287b507ea2eb
+```
+
+`git revert`  
+git revert命令同样也用于将本地代码退回到之前的某一个版本，但是和git reset的区别在于，会在git log信息当中，多增加一条commit信息，用于说明revert操作。eg:
+```
+git revert 55646eca9bcb6f5413039b020b1f287b507ea2eb
+
+代码退回到之前版本的同时，增加如下log信息，该log信息也包含hash头，是一次新的commit提交
+
+commit 6b57017c3ea6d9e4806b1b6e4ad72386559597ab
+
+Revert "add a new feature"
+This reverts commit 55646eca9bcb6f5413039b020b1f287b507ea2eb.
+```
+
+`git rebase`  
+git rebase命令，该命令中的rebase，被翻译为“变基”，意味着会去改变之前提交的基准。通常会在两种情况下被使用到：1. 自己在本地进行代码提交时，对之前的提交log信息做一定的修改( 此时，代码并没有提交代码到远端仓库 )。2. 去和别的分支进行合并代码的时候  
+
+1. 自己在本地进行代码提交时，对之前的提交log信息做一定的修改  
+
+在第一种情况下，需要使用 `git rebase -i` 命令，这里 -i 代表 interrupt, 例如:
+```
+git rebase -i 55646eca9bcb6f5413039b020b1f287b507ea2eb
+
+此时，命令行会进入一个交互式的git操作页面，在选择对应操作后，编辑文件，退出即可完成操作，必要时还需要做一定的代码修改。常见的操作有:  
+
+reword 更改某一次提交的log信息
+squash 将之前两次连续提交的log信息进行合并
+drop 放弃某次提交
+edit 修改某两次提交的前后顺序
+```
+
+2. 去和别的分支进行合并代码的时候  
+
+除了上面的操作之外，git rebase命令还能用来有效的合并分支，合并完成的分支，会产生干净的log信息提交链条，没有多余的merge提交信息。例如在一个feature分支上开发新功能，但是master分支在分叉以后，又有别的代码提交了进去，此时想把master分支的提交也同步到feature分支，可以使用：`git rebase master` 命令，此时，feature分支会将master分支在分叉之后的代码合并到feature分支上，并产生干净的log信息链条。
+
+同时，将一个功能分支(feature)合并到主分支(master)，也十分的方便，并且会产生干净的log信息链条。例如：`git rebase feature`。
+
+TODO: 合并远端分支
+
+`git merge`  
+git merge命令用于不同分支的合并，一般用法如下，将feature分支合并到master分支：
+```
+在master分支下执行：
+
+git merge feature
+```
+该种merge方式，会把feature的所有提交信息一并也都显示到master分支的log信息下，并且会产生一条新的merge commit信息。
+
+如果不想在master分支也同时显示feature分支的log信息，可以使用如下命令：
+```
+git merge --squash feature
+```
+但是，需要自己手动在master分支再去提交一次合并feature分支的信息，好处是log信息链条更加可控。
+
+以上两种merge方式的选择，需要结合自己的业务开发场景。
+
 
 **[⬆ 回到顶部](#目录结构)**
 
