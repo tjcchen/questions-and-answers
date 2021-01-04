@@ -20,6 +20,9 @@
 - [常见的网站攻击有哪些，如何通过编码做到相应的防护？](#常见的网站攻击有哪些如何通过编码做到相应的防护)
 - [请简述下Session Token和JWT的区别和应用场景？](#请简述下Session-Token和JWT的区别和应用场景)
 - [说说你对Flex布局和Grid布局的理解？](#说说你对Flex布局和Grid布局的理解)
+- [JavaScript中的call和apply有什么区别？](#JavaScript中的call和apply有什么区别)
+- [JavaScript中的for-in和for-of有什么区别？](#JavaScript中的for-in和for-of有什么区别)
+- [模块化编程CommonJS当中的module.exports和exports有什么区别？](#模块化编程CommonJS当中的module.exports和exports有什么区别)
 
 ## 说说你对闭包的理解?
 概念：延长嵌套函数中内部函数的作用域到外部函数的组合被称为闭包，当嵌套函数的外部函数被执行完成后，内部函数依旧可以访问外部函数中的变量。其实质是延长了函数的作用域链。
@@ -694,5 +697,20 @@ Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将
 去设置子元素在父元素网格中的位置，以及 `align-self:start; justify-self:end;` 去覆盖父元素设置的位置。
 
 Flex布局和Grid布局的不同之处在于, Flex设置的是单一维度的响应式布局(横轴或者纵轴)，而Grid布局设置的是两个维度的，即横纵维度的布局。
+
+**[⬆ 回到顶部](#目录结构)**
+
+## JavaScript中的call和apply有什么区别？
+JavaScript中call和apply的区别
+
+**[⬆ 回到顶部](#目录结构)**
+
+## JavaScript中的for-in和for-of有什么区别?
+for-in和for-of的区别
+
+**[⬆ 回到顶部](#目录结构)**
+
+## 模块化编程CommonJS当中的module.exports和exports有什么区别?
+模块化编程cjs当中的exports和module.exports
 
 **[⬆ 回到顶部](#目录结构)**
