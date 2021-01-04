@@ -745,6 +745,34 @@ fn.call(this, ...[param1, param2, param3]);
 **[⬆ 回到顶部](#目录结构)**
 
 ## 模块化编程CommonJS当中的module.exports和exports有什么区别?
-模块化编程cjs当中的exports和module.exports
+模块化编程cjs当中的exports和module.exports关键字都用于导出文件中的对象，变量，或者方法等，供外部调用。其区别在于，可以将任意元素（对象，类，变量，方法等）赋值给module.exports，而在使用exports做导出时，只能将之前所述的元素挂载到exports对象下，采用直接赋值的方式，将无法成功导出。例如：
+```
+function useState(initialState) {
+  // ...
+}
+exports.useState = useState;
+
+// 错误：使用该种方式则无法获取函数导出的内容
+exports = function(initialState) { // ... };
+```
+
+一个module.exports例子如下:
+```
+module.exports = class Compiler {
+  // ...
+}
+```
+
+其本质在于exports相当于nodejs文件内部的一个变量，将其引用指向了module.exports。所以再给exports进行赋值时，将无法找到module.exports导出对象了，导致导出失败。为了方便理解，nodejs的内部代码类似如下：
+```
+var module.exports = {};
+var exports = module.exports;
+
+// 此时，我们做如下操作
+exports.useState = function(initialState) { ... } // 成功导出
+exports = function(initialState) { ... } // 导出失败
+
+// 在模块引入时，会去找module.exports
+```
 
 **[⬆ 回到顶部](#目录结构)**
