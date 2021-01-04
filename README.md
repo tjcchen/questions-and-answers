@@ -735,7 +735,12 @@ fn.call(this, ...[param1, param2, param3]);
 **[⬆ 回到顶部](#目录结构)**
 
 ## JavaScript中的for-in和for-of有什么区别?
-for-in和for-of的区别
+回答该问题，我们先放上来结论：
+1. for-in循环遍历出的是key，for-of循环遍历出的是value
+2. 通常使用for-in循环来遍历对象，遍历获得的是对象的属性名称；使用for-of循环来遍历数组，遍历获得的是数组的值
+3. 使用for-of循环来遍历map，遍历将获得map的entry
+
+具体代码展示部分，可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/forInOf.html)
 
 **[⬆ 回到顶部](#目录结构)**
 
