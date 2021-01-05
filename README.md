@@ -22,7 +22,7 @@
 - [说说你对Flex布局和Grid布局的理解？](#说说你对Flex布局和Grid布局的理解)
 - [JavaScript中的call和apply有什么区别？](#JavaScript中的call和apply有什么区别)
 - [JavaScript中的for-in和for-of有什么区别？](#JavaScript中的for-in和for-of有什么区别)
-- [模块化编程CommonJS当中的module.exports和exports有什么区别？](#模块化编程CommonJS当中的module.exports和exports有什么区别)
+- [模块化编程CommonJS当中的module.exports和exports有什么区别？](#模块化编程commonjs当中的moduleexports和exports有什么区别)
 
 ## 说说你对闭包的理解?
 概念：延长嵌套函数中内部函数的作用域到外部函数的组合被称为闭包，当嵌套函数的外部函数被执行完成后，内部函数依旧可以访问外部函数中的变量。其实质是延长了函数的作用域链。
