@@ -13,7 +13,7 @@
 - [ES2017中async和await关键字有什么作用？](#ES2017中async和await关键字有什么作用)
 - [请举例说说网站优化的方法有哪些？](#请举例说说网站优化的方法有哪些)
 - [请说说你对前端模块化编程的理解？](#请说说你对前端模块化编程的理解)
-- [Git常规操作当中的reset, rebase, revert, merge, fetch在哪些时候会被用到以及它们的不同之处？](#Git常规操作当中的reset-rebase-revert-merge-fetch在哪些时候会被用到以及它们的不同之处)
+- [Git常规操作当中的reset, rebase, revert, merge, fetch, tag在哪些时候会被用到以及它们的不同之处？](#Git常规操作当中的reset-rebase-revert-merge-fetch-tag在哪些时候会被用到以及它们的不同之处)
 - [请说说你对虚拟DOM的理解？](#请说说你对虚拟DOM的理解)
 - [节流(throttle), 防抖(debounce), 函数柯里化(currying)在实际工程中有什么作用并且简述下其原理？](#节流throttle-防抖debounce-函数柯里化currying在实际工程中有什么作用并且简述下其原理)
 - [说说你对跨域问题的理解？](#说说你对跨域问题的理解)
@@ -293,7 +293,7 @@ console.log(moduleA);                 // 使用模块A
 
 **[⬆ 回到顶部](#目录结构)**
 
-## Git常规操作当中的reset, rebase, revert, merge, fetch在哪些时候会被用到以及它们的不同之处?
+## Git常规操作当中的reset, rebase, revert, merge, fetch, tag在哪些时候会被用到以及它们的不同之处?
 在回答该问题之前，先在这里简述下，将一个本地仓库添加到github远端仓库的过程：
 - 本地有一个文件夹，我们把它变成一个拥有git版本记录功能仓库：`git init`
 - 在本地添加完文件，进行了本地commit操作后，把该仓库推送到github远端：`git remote add origin git@github.com:tjcchen/test.git`  
@@ -307,7 +307,7 @@ origin	git@github.com:tjcchen/test.git (push)
 ```
 
 
-`git reset`  
+### `git reset`  
 git reset命令会去将本地提交退回到之前的某一个版本，但是在指定版本提交之后的代码修改依旧存在。eg:
 ```
 git reset 55646eca9bcb6f5413039b020b1f287b507ea2eb
@@ -319,7 +319,7 @@ git reset --hard 55646eca9bcb6f5413039b020b1f287b507ea2eb
 ```
 
 
-`git revert`  
+### `git revert`  
 git revert命令同样也用于将本地代码退回到之前的某一个版本，但是和git reset的区别在于，会在git log信息当中，多增加一条commit信息，用于说明revert操作。eg:
 ```
 git revert 55646eca9bcb6f5413039b020b1f287b507ea2eb
@@ -333,7 +333,7 @@ This reverts commit 55646eca9bcb6f5413039b020b1f287b507ea2eb.
 ```
 
 
-`git rebase`  
+### `git rebase`  
 git rebase命令，该命令中的rebase，被翻译为“变基”，意味着会去改变之前提交的基准。通常会在两种情况下被使用到：1. 自己在本地进行代码提交时，对之前的提交log信息做一定的修改( 此时，代码并没有提交代码到远端仓库 )。2. 去和别的分支进行合并代码的时候  
 
 1. 自己在本地进行代码提交时，对之前的提交log信息做一定的修改  
@@ -365,7 +365,7 @@ edit 将某些新的代码修改加到之前的某次提交当中去
 - 此时，当修改完成后在进行代码的提交和push，会产生干净的log信息链条
 
 
-`git merge`  
+### `git merge`  
 git merge命令用于不同分支的合并，一般用法如下，将feature分支合并到master分支：
 ```
 在master分支下执行：
@@ -383,7 +383,7 @@ git merge --squash feature
 以上两种merge方式的选择，需要结合自己的业务开发场景。
 
 
-`git fetch`  
+### `git fetch`  
 git fetch命令用于将远端的分支更新到本地的远端分支备份，多用于团队合作之前，合并别人有冲突的代码。例如：
 ```
 git fetch origin master
@@ -391,7 +391,7 @@ git fetch origin master
 该命令会将远端的master分支fetch到本地的remotes/origin/master分支，此时remotes/origin/master分支上为远端最新的代码
 
 
-`git pull`  
+### `git pull`  
 git pull命令，会将远端的代码拉倒本地，并且去做一个merge操作。其实质是一共执行了两个命令操作：git fetch和git merge。举例简单来描述下该过程：  
 ```
 git pull origin master
@@ -400,6 +400,48 @@ git pull origin master
 - 紧接着将本地备份分支的代码，即本地origin/master分支，和master主分支进行了合并。相当于在master分支执行 `git merge origin/master`
 
 注：可以使用该命令查看所有的本地分支：`git branch -al`
+
+### `git tag`  
+git tag命令可以让开发者去标记开发过程中的关键节点，便于之后查看和管理。其本质是给某个log版本信息添加了一个别名，经常用在去给软件的某个发行版本做标记，比如V1.3.3。
+
+添加tag的信息两种方式：
+- 带有注解信息的
+```
+git tag -a v1.2 -m "my version 1.2"
+```
+- 直接进行tag信息标注的
+```
+git tag v1.2
+```
+
+当然，我们也可以给之前的某次提交信息打tag：
+```
+git tag -a v1.2 9fceb02 -m "initial commit version v0.1"
+```
+
+将tag信息推送到远端，可以分为一个或者多个tag：
+- 单一tag
+```
+git push origin v4.0
+```
+- 多个tag
+```
+git push origin --tags
+```
+
+显示所有的tag标记信息: ``` git tag ```  
+显示某个tag信息的改动内容：``` git show v1.0 ```
+
+删除本地tag和远端tag  
+本地：
+```
+git tag --delete v0.0.2 / git tag -d v0.0.2
+```
+远端：
+```
+1. git push --delete origin v0.0.2 / git push -d origin v0.0.2
+2. git push origin :0.0.2
+```
 
 **[⬆ 回到顶部](#目录结构)**
 
