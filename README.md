@@ -298,6 +298,7 @@ console.log(moduleA);                 // 使用模块A
 - 本地有一个文件夹，我们把它变成一个拥有git版本记录功能仓库：`git init`
 - 在本地添加完文件，进行了本地commit操作后，把该仓库推送到github远端：`git remote add origin git@github.com:tjcchen/test.git`  
 注意：这里的origin是远端地址的别名，远端地址指的是 `git@github.com:tjcchen/test.git`
+- 将本地master分支重命名为main分支: `git branch -M main`
 - 将本地代码推送到远端：`git push -u origin main`  
 注意：这里的 `-u` 是 `--set-upstream`，会把远端的main分支设置为默认上游分支，下次直接输入 `git push` 就可以推送到远端main分支
 - 此时可以使用 `git remote -v` 查看 push 和 fetch 的远端地址，例如：
