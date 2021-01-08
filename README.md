@@ -748,7 +748,7 @@ Flex布局和Grid布局的不同之处在于, Flex设置的是单一维度的响
 
 ## JavaScript中的call和apply有什么区别？
 JavaScript中call和apply方法都是使用函数名称来对函数进行个调用，在以下两种情况下，会较多的使用：
-- 相当把当前函数的上下文this对象，传递给调用者，可以使用类似 `func.call(this, param1, param2);` 或者 `func.apply(this, [param1, param2]);` 的方式
+- 把当前函数的上下文this对象，传递给调用者，可以使用类似 `func.call(this, param1, param2);` 或者 `func.apply(this, [param1, param2]);` 的方式
 - 将某个函数作为参数，传递给另一个函数，此时在另一个函数内部调用时可以使用call或者apply方法：
 ```
 const someFunc = (str, fn) => {
