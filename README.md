@@ -101,6 +101,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
   display: -webkit-box;         /* 使用-webkit-box布局显示 */
   -webkit-line-clamp: 3;        /* 显示的行数 */
   -webkit-box-orient: vertical; /* 垂直方向显示内容 */
+  overflow: hidden;             /* 内容超出进行隐藏 */
 }
 ```
 
