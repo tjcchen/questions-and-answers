@@ -192,9 +192,9 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 
 具体的做法通常有以下几种：
 1. 使用媒体查询（Media Query）。
-2. 使用CSS `rem` 像素单位，当不同设备浏览器的尺寸宽度变窄时，动态调节html根元素字体的大小，以实现样式的动态适配。
-3. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com) 以及 [https://m.baidu.com](https://m.baidu.com)，同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
-4. 同时也有部分网站采用动态设置meta viewport scale的方式，该种方式可以配合方案3一起使用。详情请参考[代码](https://github.com/tjcchen/interviews/blob/master/Responsive/dynamicViewPort.html)
+2. 使用CSS `rem` 长度单位，当不同设备浏览器的尺寸宽度变窄时，动态调节html根元素字体的大小，以实现样式的动态适配。具体实现可参考[代码](https://github.com/tjcchen/interviews/blob/master/Responsive/mobileRemLayout.html)
+3. 使用CSS `vw` 长度单位，因为vw单位会根据浏览器的宽度，自动调节1vw所占的宽度比例，从而实现样式的动态适配。具体实现可参考[代码](https://github.com/tjcchen/interviews/blob/master/Responsive/VWMobileLayout.html)
+4. PC端和平板电脑端采用一套前端代码，使用媒体查询(Media Query)做样式适配；在手机端采用另一套代码，例如常见的：[https://m.taobao.com](https://m.taobao.com) 以及 [https://m.baidu.com](https://m.baidu.com)，同时，多使用Flex布局、Grid布局以实现不同手机设备的兼容。
 
 **[⬆ 回到顶部](#目录结构)**
 
