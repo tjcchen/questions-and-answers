@@ -823,6 +823,46 @@ exports = function(initialState) { ... } // 导出失败
 **[⬆ 回到顶部](#目录结构)**
 
 ## 如何处理移动端页面1px问题？
-移动端页面1px问题
+在移动端Retina显示屏下，很多时候屏幕显示的dpr为2或者3，此时会产生移动端页面CSS border属性显示过宽的问题。在这里举两个切实可行的方案，来做相应的修复。
+1. 使用CSS transform和伪类元素配合的方式来进行修复
+- 一条边
+```
+.scale-1px {
+  position:relative; 
+  border: none;
+}
+.scale-1px:after { 
+  content: '';
+  position: absolute;
+  left: 0;
+  background: #000;
+  width: 100%;
+  height: 1px;
+  transform: scaleY(0.5);
+  transform-origin: 0 0;
+}
+```
+- 四条边
+```
+.scale-1px-plus {
+  position: relative;
+  border: none;
+}
+.scale-1px-plus:after {
+  box-sizing: border-box;
+  position: absolute;
+  content: ''; 
+  top: 0;
+  left: 0;
+  border: 1px solid #000;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0; 
+}
+```
+具体代码实现，可参考该[文件](https://github.com/tjcchen/interviews/blob/master/Responsive/1pxSolutions.html)
+
+2. 使用 `postcss-write-svg` 插件，用svg图片来进行修复。具体可参考该[链接](https://github.com/jonathantneal/postcss-write-svg)
 
 **[⬆ 回到顶部](#目录结构)**
