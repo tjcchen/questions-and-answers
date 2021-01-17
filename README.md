@@ -125,7 +125,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 .parent {
   display: table-cell;
 }
-```css
+```
 1.3 实现：使用`相对定位`或者`transform`实现
 ```css
 .parent {
@@ -262,7 +262,6 @@ define('moduleA', ['moduleB'], function(moduleB) {
   // 1. 第一个参数moduleA为模块A的名称
   // 2. 第二个参数moduleB为moduleA所依赖的其他模块
   // 3. 第三个参数中的moduleB为模块B所导出的内容
-
   return 'moduleA ' + moduleB;
 })；
 ```
@@ -637,10 +636,12 @@ JWT(Json Web Token)技术的实现强烈依靠加密算法，需要将用户的�
 需要注意的是：Session Token当中包含的信息只是用户登录的凭证，可以是用户的ID等，通常会临时保存在服务器端的缓存(Redis/Memcached)或者数据库(Postgre/MongoDB)当中，就算不小心token被盗用了，也不会产生影响，因为该凭证只和自己的服务器有对应关系。
 而JWT发回给用户的token是包含了用户名、邮箱等信息的密文，会被保存在客户端，因此密文的安全性变得十分重要。
 
-经过加密的JWT token，通常包含三个部分：头部(header)，消息体(payload)，签名(signature)。使用点分隔符（.）进行分割。例如：  
+经过加密的JWT token，通常包含三个部分：头部(header)，消息体(payload)，签名(signature)。使用点分隔符（.）进行分割。例如： 
+```bash
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.  
 eyJkYXRhIjp7ImlkIjoxMDAwMDEsInVzZXJuYW1lIjoid2VicGFjayIsImVtYWlsIjoidGVzdEBxcS5jb20iLCJhdmF0YXIiOiIvL3FwaWMudXJsLmNuL2ZlZWRzX3BpYy9hak5WZHFIWkxMQks3UXlKbmljTXVpY3dXVnJLaHVJYzQyNndFWWJJYVNsYVhaUkR1cXMyaDRYQS8iLCJ0eXBlIjoyfSwiZXhwIjoxNTY5NjYyNDkyLCJpYXQiOjE1NjkwNTc2OTJ9.  
 _cc7B2Q565rL-hKK25Lppw4IDVEkQP17qky0boVTlrA
+```
 
 一个简单的通过curl模拟发送jwt到服务器端的例子如下：
 ```bash
