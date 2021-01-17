@@ -45,7 +45,7 @@
 
 清除浮动（`clearfix`）的几种方式：
 1. 推荐方式
-```
+```css
 .clearfix:before, .clearfix:after {
   content: "";
   display: table;
@@ -56,7 +56,7 @@
 }
 ```
 2. 使用`:after`伪元素
-```
+```css
 .container:after {
   content: "";
   height: 0;
@@ -89,7 +89,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 
 ## 如何使用CSS实现文字截断效果？
 1. 单行文字截断：
-```
+```css
 .truncate-single-line {
   white-space: nowrap;     /* 文字不换行 */
   overflow: hidden;        /* 文字超出容器隐藏内容 */
@@ -97,7 +97,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 }
 ```
 2. 多行文字截断
-```
+```css
 .truncate-multi-lines {
   display: -webkit-box;         /* 使用-webkit-box布局显示 */
   -webkit-line-clamp: 3;        /* 显示的行数 */
@@ -112,24 +112,22 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 1. 设置单行元素居中  
 
 1.1 实现：设置父元素的高度和行高保持一致
-```
+```css
 .div {
   width: 200px;
-
-  /* 关键代码 */
   height: 200px;
   line-height: 200px;
   text-align: center;
 }
 ```
 1.2 实现：设置父元素`display:table-cell;`或者使用`table标签`来实现
-```
-.div {
+```css
+.parent {
   display: table-cell;
 }
-```
+```css
 1.3 实现：使用`相对定位`或者`transform`实现
-```
+```css
 .parent {
   position: relative;
 }
@@ -140,15 +138,15 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 }
 ```
 1.4 实现：通过父元素flex布局属性实现(这些属性同样可以居中多行元素)
-```
+```css
 .parent {
   display: flex;
   align-items: center;    /* 垂直居中 */
   justify-conent: center; /* 水平居中 */
 }
 ```
-1.5 实现：使用父元素grid布局属性实现(只能单行)
-```
+1.5 实现：使用父元素grid布局属性实现
+```css
 .parent {
   display: grid;
   place-items: center;
@@ -158,23 +156,18 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 2. 设置多行元素居中  
 
 2.1 实现：使用伪类元素`height:100%; vertical-align:middle;`撑起行高，其他子元素也设置`vertical-align:middle;`
-```
+```css
 .parent {
   width: 200px;
   height: 200px;
   text-align: center;
 }
 
-.parent .first-child,
-.parent .second-child,
-.parent .third-child {
+.parent .first-child, .parent .second-child, .parent .third-child {
   display: inline-block;
-
-  /* 关键代码 */
   vertical-align: middle;
 }
 
-/* 关键代码 */
 .parent::before {
   content: "";
   width: 0;
@@ -258,12 +251,12 @@ https://developer.yahoo.com/performance/rules.html
 
 常见的模块化标准有CommonJS、AMD、ES Module。  
 其中，CommonJS为Node.js的一套模块化规范，运行在Node环境下，使用require函数和module.exports对象来实现模块的导入导出。例如：  
-```
+```js
 const moduleA = require('./moduleA'); // 导入（引用）moduleA
 module.exports = moduleA;             // 导出（定义）moduleA
 ```
 AMD是一套运行在浏览器端的模块化规范，不同于CommonJS的同步加载，AMD默认采用异步模块加载的方式。分别使用require和define函数来实现引用和定义。此处使用[require.js](https://requirejs.org/)进行举例：
-```
+```js
 // 定义模块A
 define('moduleA', ['moduleB'], function(moduleB) {
   // 1. 第一个参数moduleA为模块A的名称
@@ -273,7 +266,7 @@ define('moduleA', ['moduleB'], function(moduleB) {
   return 'moduleA ' + moduleB;
 })；
 ```
-```
+```js
 // 引用模块A
 require(['moduleA'], function(moduleA) {
   console.log(moduleA); // 输出'moduleA moduleB'
@@ -281,12 +274,12 @@ require(['moduleA'], function(moduleA) {
 
 ```
 ES Module是在ES6中引入的模块化规范，目前使用也最为广泛，使用import和export两个关键字进行导入导出，例如：
-```
+```js
 // moduleA.js
 const moduleA = new Date().getTime(); // 定义模块A
 export default moduleA;               // 导出模块A
 ```
-```
+```js
 // index.js
 import moduleA from './moduleA';      // 导入模块A
 console.log(moduleA);                 // 使用模块A
@@ -450,7 +443,7 @@ git tag --delete v0.0.2 / git tag -d v0.0.2
 
 ## 请说说你对虚拟DOM的理解？
 虚拟DOM的实质是用JavaScript对象去描述真实DOM的节点。它的出现使得页面渲染的性能有了很大程度的提升，主要归功于diff函数在做更新操作时，通过新旧虚拟DOM树的比对，只去更新那些需要更新的DOM节点或者属性，并将结果渲染在真实DOM上。虚拟DOM其实并不神秘，在使用虚拟DOM描述一个Div元素时，其结构大致为：
-```
+```js
 <div id="app">virtual dom</div>
 
 转换为：
@@ -479,7 +472,7 @@ diff(): 当有更新操作时（属性更新或者节点更新），进行新旧
 节流和防抖的作用类似，主要用于限制高频事件的触发。而函数柯里化使得函数(`function`)的调用变得更加灵活，我们可以一次性传入几个或者多个参数调用函数。类似的例子有：connect(mapStateToProps)(Component) 或者 add(1)(2)(3)；
 
 节流的实现原理：使用时间戳来控制，在一段时间内，某个事件只能触发一次。具体代码实现为：
-```
+```js
 const throttle = (fn, delay = 250) => {
   let last = 0;
 
@@ -497,7 +490,7 @@ const throttle = (fn, delay = 250) => {
 };
 ```
 防抖的实现原理：使用timer来控制一段时间内，某个事件只触发一次。具体代码实现为：
-```
+```js
 const debounce = (fn, delay = 250) => {
   let timerId = null;
 
@@ -516,7 +509,7 @@ const debounce = (fn, delay = 250) => {
 };
 ```
 函数柯里化的实现原理：使用`闭包`或者`bind函数`实现函数参数的分开多次传入。这里我们使用闭包来做一个简单的实现：
-```
+```js
 const add = (...args) => {
   let sum = 0;
 
@@ -560,7 +553,7 @@ console.log(sum); // 55
 XSS是跨站的脚本攻击(Cross Site Scripting)，是指攻击者将恶意脚本代码注入到网站的一种攻击方式，通过该方式攻击者可以破坏其他用户的网站正常使用，以及窃取用户的敏感信息等。常见的攻击如下：
 1. 攻击者在网站的输入框、或者提交评论等位置输入恶意脚本代码，网站直接将用户输入的内容未经处理存储到了数据库,之后又将这些评论直接输出给其他用户看，这样其他用户在访问的网站页面时就会执行恶意代码，造成危险。
 修复方式：任何用户输入的内容都去进行escape或者encode处理，才能进行后续的操作，例如
-```
+```html
 <script>window.location.href='http://hackers-website.com';</script>
 
 转译为：
@@ -568,13 +561,11 @@ XSS是跨站的脚本攻击(Cross Site Scripting)，是指攻击者将恶意脚�
 &lt;script&gt;window.location.href=&apos;http://hackers-website.com&apos;;&lt;/script&gt;
 ```
 2. 攻击者给受害者发送钓鱼邮件，邮件中的url里含有恶意脚本，受害者点击链接后，被跳转到某网站，网站直接将url所带的参数输出到页面上。此时用户的敏感信息就会有被盗取的风险。例如：
-```
-钓鱼网站中包含的链接为：
-
+```js
+// 钓鱼网站中包含的链接为：
 http://example.com?query=<img src onerror="alert(document.cookie);" />
 
-网站中的部分代码为：
-
+// 网站中的部分代码为：
 let query = new URL(window.location).searchParams.get('query')
 let queryElmt = document.getElementById('query');
 query.innerHTML = query; 
@@ -586,18 +577,16 @@ query.innerHTML = query;
 
 3. 其他的一些防止XSS攻击的方法可以配合服务器端一起来做，比如设置内容安全策略响应头部(`Content-Security-Policy`)来限制脚本的来源，或者设置HTST(`HTTP Strict-Transport-Security`)响应头部来限制只能通过https协议访问网站。
 服务器端的代码示例：
-```
+```js
 Content-Security-Policy:
-
 response.setHeader("Content-Security-Policy", "script-src http://www.example.com http://www.example2.com");
 
 Strict-Transport-Security:
-
 response.setHeader("Strict-Transport-Security", "max-age=172800");
 ```
 
 4. 除此之外，还可以在服务器端给SetCookie设置HttpOnly属性，保证cookie无法通过脚本的document.cookie进行访问，避免敏感信息XSS盗取。代码示例：
-```
+```js
 Set-Cookie: id=a3fWa; Expires=Thu, 21 Oct 2021 07:28:00 GMT; Secure; HttpOnly
 ```
 
@@ -607,7 +596,7 @@ CSRF攻击是跨站请求伪造攻击(Cross Site Request Forgery)，攻击者通
 举一个简单的例子来说明原理：
 - 当用户通过用户名和密码登录某银行网站(eg: `http://www.bank.com`)后，银行向用户发送了一个session_token用来记录用户的登录状态（使用cookie来存储）
 - 这时，该用户收到了一封钓鱼邮件，诱导用户跳转到某非法网站，网站的部分代码大致如下：
-```
+```html
 <body onload="document.csrfForm.submit()">
   <h3>Forgery Form Used for CSRF DEMO</h3>
   <form action="http://www.bank.com/transfer" method="POST" target="hiddenFrame" name="csrfForm">
@@ -618,7 +607,7 @@ CSRF攻击是跨站请求伪造攻击(Cross Site Request Forgery)，攻击者通
 </body>
 ```
 - 上面所示的这段代码会在页面加载完成后，向银行发送一个post请求，用来伪造用户的操作。大致请求为：
-```
+```js
 url: http://www.bank.com/transfer
 method: POST
 name: bob
@@ -654,7 +643,7 @@ eyJkYXRhIjp7ImlkIjoxMDAwMDEsInVzZXJuYW1lIjoid2VicGFjayIsImVtYWlsIjoidGVzdEBxcS5j
 _cc7B2Q565rL-hKK25Lppw4IDVEkQP17qky0boVTlrA
 
 一个简单的通过curl模拟发送jwt到服务器端的例子如下：
-```
+```bash
 curl -H 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxMDAwMDEsInVzZXJuYW1lIjoid2VicGFjayIsImVtYWlsIjoidGVzdEBxcS5jb20iLCJhdmF0YXIiOiIvL3FwaWMudXJsLmNuL2ZlZWRzX3BpYy9hak5WZHFIWkxMQks3UXlKbmljTXVpY3dXVnJLaHVJYzQyNndFWWJJYVNsYVhaUkR1cXMyaDRYQS8iLCJ0eXBlIjoyfSwiZXhwIjoxNTY5NjYyNDkyLCJpYXQiOjE1NjkwNTc2OTJ9._cc7B2Q565rL-hKK25Lppw4IDVEkQP17qky0boVTlrA'
 -X POST -d "title=test&content=test&thumbnail=http://www.tjcchen.cn/love.png" "http://127.0.0.1:8001/v1/review/new"
 ```
@@ -667,7 +656,7 @@ Flex布局
 实现Flex布局，一共有两部分的内容需要注意：
 1. 第一步是要在父容器设置 `display:flex;` 属性，告诉浏览器，父元素中包裹的子元素要使用flex方式进行布局了
 2. 第二步是要在子元素当中设置 `flex:1;` 属性，用于告诉浏览器，该子元素要以多少比例进行缩放，子元素会根据浏览器宽度的一定比例动态设置子元素宽度
-```
+```css
 <div class="container">
   <div class="item1"></div>
   <div class="item2"></div>
@@ -698,7 +687,7 @@ CSS:
 
 Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将页面元素划分为一个一个的网格，然后指明每个子元素需要占取的网格数量。实现Grid布局也有两个部分需要注意，即父元素和子元素部分，但大部分设置都集中在父元素。
 1. 第一步要在父元素中设置 `display: grid;` 属性，除此之外，还要在父元素中指明子元素的网格列数和行数，通过宽度和高度设置，例如：
-```
+```css
 .container {
   display: grid;
   grid-template-columns: 300px 200px 300px; /* 指明一共有三列，第一列300px，第二列200px，第三列300px */
@@ -728,7 +717,7 @@ Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将
 }
 ```
 2. 第二步要在子元素中，设置每个元素所占的网格数，例如：
-```
+```css
 .container .item1 {
   grid-column: 1 / 4; /* 等同于：grid-column-start: 1; grid-column-end: 4;, 表示item1占取三列 */
   grid-row: 1 / 3;    /* 等同于：grid-row-start: 1; grid-row-end: 3;, 表示item1占取两行 */
@@ -753,7 +742,7 @@ Flex布局和Grid布局的不同之处在于, Flex设置的是单一维度的响
 JavaScript中call和apply方法都是使用函数名称来对函数进行个调用，在以下两种情况下，会较多的使用：
 - 把当前函数的上下文this对象，传递给调用者，可以使用类似 `func.call(this, param1, param2);` 或者 `func.apply(this, [param1, param2]);` 的方式
 - 将某个函数作为参数，传递给另一个函数，此时在另一个函数内部调用时可以使用call或者apply方法：
-```
+```js
 const someFunc = (str, fn) => {
   fn.apply(null, ['param', 'from', 'caller', str]);
 };
@@ -761,19 +750,19 @@ const someFunc = (str, fn) => {
 
 Call和apply的区别在于，函数参数的传入方式，call使用逗号进行参数的分割，而apply需要传入一个参数数组：  
 `Call的使用`
-```
+```js
 fn.call(null, param1, param2, param3);
 ```
 
 `Apply的使用`
-```
+```js
 fn.apply(null, [param1, param2, param3]);
 ```
 
 为了方便记忆，可以将call和apply的区别记为：`A for array and C for comma.`
 
 当然，在ES6中引入spread语法之后，在call里面也可以传入数组：
-```
+```js
 fn.call(this, ...[param1, param2, param3]);
 ```
 
@@ -791,7 +780,7 @@ fn.call(this, ...[param1, param2, param3]);
 
 ## 模块化编程CommonJS当中的module.exports和exports有什么区别?
 模块化编程cjs当中的exports和module.exports关键字都用于导出文件中的对象，变量，或者方法等，供外部调用。其区别在于，可以将任意元素（对象，类，变量，方法等）赋值给module.exports，而在使用exports做导出时，只能将之前所述的元素挂载到exports对象下，采用直接赋值的方式，将无法成功导出。例如：
-```
+```js
 function useState(initialState) {
   // ...
 }
@@ -802,20 +791,20 @@ exports = function(initialState) { // ... };
 ```
 
 一个module.exports例子如下:
-```
+```js
 module.exports = class Compiler {
   // ...
 }
 ```
 
 其本质在于exports相当于nodejs文件内部的一个变量，将其引用指向了module.exports。所以再给exports进行赋值时，将无法找到module.exports导出对象了，导致导出失败。为了方便理解，nodejs的内部代码类似如下：
-```
+```js
 var module.exports = {};
 var exports = module.exports;
 
 // 此时，我们做如下操作
-exports.useState = function(initialState) { ... } // 成功导出
-exports = function(initialState) { ... } // 导出失败
+exports.useState = function(initialState) { ... }; // 成功导出
+exports = function(initialState) { ... }; // 导出失败
 
 // 在模块引入时，会去找module.exports
 ```
@@ -826,11 +815,12 @@ exports = function(initialState) { ... } // 导出失败
 在移动端Retina显示屏下，很多时候屏幕显示的dpr为2或者3，此时会产生移动端页面CSS border属性显示过宽的问题。在这里举两个切实可行的方案，来做相应的修复。
 1. 使用CSS transform和伪类元素配合的方式来进行修复
 - 一条边
-```
+```css
 .scale-1px {
   position:relative; 
   border: none;
 }
+
 .scale-1px:after { 
   content: '';
   position: absolute;
@@ -843,11 +833,12 @@ exports = function(initialState) { ... } // 导出失败
 }
 ```
 - 四条边
-```
+```css
 .scale-1px-plus {
   position: relative;
   border: none;
 }
+
 .scale-1px-plus:after {
   box-sizing: border-box;
   position: absolute;
