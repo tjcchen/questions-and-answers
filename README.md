@@ -861,6 +861,18 @@ exports = function(initialState) { ... }; // 导出失败
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请你简述下Map, WeakMap, Set, WeakSet的异同，以及会在什么情况下用到他们？
-Map, WeakMap, Set, WeakSet的区别
+1. Map，WeakMap，Set，WeakSet这些关键字是ES6之后引入的新语法。Map用于存储键值对(key-value)的组合，类似于其他编程语言中的字典(Dictionary)用法；Set只能用于存储单个元素的集合，其中的元素不能重复出现，并且Set和Array之间可以进行相互转换。
+2. WeakMap的用法和Map类似，但是有以下几个明显区别：
+- WeakMap的key必须为对象，值可以为任意值
+- WeakMap的key是弱引用，当内存中没有对象引用时，GC会去将其回收(比如将某个key置为null时)
+- WeakMap的key无法进行枚举遍历
+3. WeakSet的用法和set类似，也有以下几个区别：
+- WeakSet的每个元素必须为对象类型，并且只能出现一次
+- WeakSet中的元素没有引用时，也会去被GC回收(比如将某个元素置为null时)
+- WeakSet当中的元素也无法通过枚举进行遍历
+
+`用例：`
+- WeakMap可用于存储私有数据，具体可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/weakMap.js)
+- 待补充。。。
 
 **[⬆ 回到顶部](#目录结构)**
