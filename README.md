@@ -861,6 +861,7 @@ exports = function(initialState) { ... }; // 导出失败
 **[⬆ 回到顶部](#目录结构)**
 
 ## 请你简述下Map, WeakMap, Set, WeakSet的异同，以及会在什么情况下用到他们？
+`区别：`
 1. Map，WeakMap，Set，WeakSet这些关键字是ES6之后引入的新语法。Map用于存储键值对(key-value)的组合，类似于其他编程语言中的字典(Dictionary)用法；Set只能用于存储单个元素的集合，其中的元素不能重复出现，并且Set和Array之间可以进行相互转换。
 2. WeakMap的用法和Map类似，但是有以下几个明显区别：
 - WeakMap的key必须为对象，值可以为任意值
