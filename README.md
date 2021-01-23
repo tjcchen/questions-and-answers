@@ -83,8 +83,8 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 应用场景及修复问题:
 1. 修复外边距折叠问题（Margin Collapsing）。
 2. 清除浮动：  
-  2.1 限制内部浮动，防止父容器塌陷。  
-  2.2 阻止外部浮动，防止子元素中之前的元素遮挡后面的元素。
+    2.1 限制内部浮动，防止父容器塌陷。  
+    2.2 阻止外部浮动，防止子元素中之前的元素遮挡后面的元素。
 
 **[⬆ 回到顶部](#目录结构)**
 
@@ -703,13 +703,13 @@ Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将
   /* 其中 1fr 为一个新单位，为1个fraction，会去占用父元素的剩下可用空间；2fr代表会占用1fr的两倍空间 */
   /* grid-template-columns: 220px 1fr auto; */
 
-  /* [有用]：auto-fit属性会去自动伸缩子元素宽度去填满容器 */
+  /* auto-fit属性会去自动伸缩子元素宽度去填满容器 */
   /* 而 auto-fill 会去使用空元素占位置填满剩余的空间 */
   /* grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); */
 
   /* 该属性会去自动使用子元素填满父容器，当元素跨行/列的子元素所占宽高不合理时 */
   /* grid-auto-flow: dense; */
-
+ 
   /* 该属性设置默认行的高度，最小高度为150px */
   /* grid-auto-rows: minmax(150px, auto); */
 
@@ -816,7 +816,9 @@ exports = function(initialState) { ... }; // 导出失败
 ## 如何处理移动端页面1px问题？
 在移动端Retina显示屏下，很多时候屏幕显示的dpr为2或者3，此时会产生移动端页面CSS border属性显示过宽的问题。在这里举两个切实可行的方案，来做相应的修复。
 1. 使用CSS transform和伪类元素配合的方式来进行修复
-- 一条边
+
+`一条边:`
+
 ```css
 .scale-1px {
   position:relative; 
@@ -834,7 +836,8 @@ exports = function(initialState) { ... }; // 导出失败
   transform-origin: 0 0;
 }
 ```
-- 四条边
+`四条边:`
+
 ```css
 .scale-1px-plus {
   position: relative;
@@ -873,6 +876,7 @@ exports = function(initialState) { ... }; // 导出失败
 - WeakSet当中的元素也无法通过枚举进行遍历
 
 `用例：`
+
 - WeakMap可用于存储私有数据，具体可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/weakMap.js)
 - 待补充。。。
 
