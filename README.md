@@ -823,7 +823,7 @@ exports = function(initialState) { ... }; // 导出失败
 在移动端Retina显示屏下，很多时候屏幕显示的dpr为2或者3，此时会产生移动端页面CSS border属性显示过宽的问题。在这里举两个切实可行的方案，来做相应的修复。
 1. 使用CSS transform和伪类元素配合的方式来进行修复
 
-`一条边:`
+- 一条边:
 
 ```css
 .scale-1px {
@@ -842,7 +842,7 @@ exports = function(initialState) { ... }; // 导出失败
   transform-origin: 0 0;
 }
 ```
-`四条边:`
+- 四条边:
 
 ```css
 .scale-1px {
