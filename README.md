@@ -549,7 +549,19 @@ console.log(sum); // 55
 **[⬆ 回到顶部](#目录结构)**
 
 ## 说说你对跨域问题的理解？
-常见实现跨域的技术有JSONP、CORS、PostMessage、IFrame、代理等
+简单理解：当A网站通过Ajax向B网站请求API数据时，此时浏览器会阻止此次请求，使得A网站无法成功获取数据。在这种情况下，我们就称之为跨域请求问题。
+
+实际上，当A、B网站为以下情况之一时，都会出现跨域数据共享问题：
+
+- 网站协议不同( http和https )：http://www.baidu.com 和 https://www.baidu.com
+- 网站域名不同：https://www.baidu.com 和 https://www.taobao.com
+- 网站端口不同( 8080和3000 )：https://www.baidu.com:8080 和 https://www.baidu.com:3000
+
+
+
+常见跨域问题修复的方法有：JSONP、CORS( Cross-Origin Resource Sharing )、PostMessage、IFrame、代理等。这里我们举三个实际好用的修复例子。
+
+
 
 **[⬆ 回到顶部](#目录结构)**
 
