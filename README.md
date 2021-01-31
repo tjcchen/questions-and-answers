@@ -792,11 +792,12 @@ fn.call(null, param1, param2, param3);
 ```
 
 `Apply的使用`
+
 ```js
 fn.apply(null, [param1, param2, param3]);
 ```
 
-为了方便记忆，可以将call和apply的区别记为：`A for array and C for comma.`
+为了方便记忆，可以将apply和call的区别记为：`A for array and C for comma.`
 
 当然，在ES6中引入spread语法之后，在call里面也可以传入数组：
 ```js
