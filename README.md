@@ -565,9 +565,47 @@ console.log(sum); // 55
 
 #### JSONP
 
-该种方式可以兼容老版本的浏览器，通过script标签来绕过跨域限制。具体做法如下：
+该种方式可以兼容老版本的浏览器，利用script标签具有可以获取跨域资源的特性，来绕过跨域请求限制。具体做法如下：
 
-TODO: 待添加
+1. 创建script标签，将其url指向支持JSONP的数据接口，并且在url之后带上callback参数，例如：`https://example.com/jsonp?callback=callback`
+2. 同时，挂载一个名为`callback`函数到`window`下，用于接收JSONP传回来的数据
+3. JSONP传回来的数据类似于这样: `typeof callback && callback(serverData);`。先去判断下全局`callback`是否存在，如果存在将服务器端数据传入并且执行，这样就实现了跨域数据的共享。
+
+完整代码示例如下:
+
+```js
+const jsonp = ({ url, params, callback }) => {
+  const generateUrl = () => {
+    let dataSrc = '';
+
+    for (let key in params) {
+      // append url parameters when the key in params
+      if (Object.prototype.hasOwnProperty.call(params, key)) {
+        dataSrc += `${key}=${params[key]}&`;
+      }
+    }
+
+    dataSrc += `callback=${callback}`;
+    return `${url}?${dataSrc}`;
+  };
+
+  return new Promise((resolve, reject) => {
+    const scriptEl = doc.createElement('script');
+    scriptEl.type = 'text/javascript';
+    scriptEl.src  = generateUrl();
+
+    doc.body.appendChild(scriptEl);
+    win[callback] = data => {
+      resolve(data);
+
+      // scriptEl: script src="http://localhost:3000/jsonp?type=jsonp&callback=callback"
+      doc.body.removeChild(scriptEl);
+    };
+  });
+}；
+```
+
+注：该种类型的数据交互，需要客户端和服务器端的同时进行支持，才能够生效。
 
 
 
