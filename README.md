@@ -605,7 +605,7 @@ const jsonp = ({ url, params, callback }) => {
 }；
 ```
 
-注：该种类型的数据交互，需要客户端和服务器端的同时进行支持，才能够生效。
+注：该种类型的数据交互，需要客户端和服务器端的同时进行支持，才能够生效。具体演示，也可以参考该[链接](https://github.com/tjcchen/interviews/blob/aed8570337a07b0ff8f769d1c70a5bfd408a7eb5/Basics/jsonp.html)
 
 
 
