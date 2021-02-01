@@ -570,6 +570,7 @@ console.log(sum); // 55
 1. 创建script标签，将其url指向支持JSONP的数据接口，并且在url之后带上callback参数，例如：`https://example.com/jsonp?callback=callback`
 2. 同时，挂载一个名为`callback`函数到`window`下，用于接收JSONP传回来的数据
 3. JSONP传回来的数据类似于这样: `typeof callback && callback(serverData);`。先去判断下全局`callback`是否存在，如果存在将服务器端数据传入并且执行，这样就实现了跨域数据的共享。
+4. 最后，获取完服务器端的数据后，别忘了将页面上的script标签给清除掉。
 
 完整代码示例如下:
 
