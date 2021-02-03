@@ -394,7 +394,8 @@ git fetch origin master
 
 
 ### `git pull`  
-git pull命令，会将远端的代码拉倒本地，并且去做一个merge操作。其实质是一共执行了两个命令操作：git fetch和git merge。举例简单来描述下该过程：  
+`git pull`命令，会将远端的代码拉倒本地，并且去做一个merge操作。其实质是一共执行了两个命令操作：`git fetch` 和 `git merge`。举例简单来描述下该过程：  
+
 ```
 git pull origin master
 ```
@@ -404,7 +405,7 @@ git pull origin master
 注：可以使用该命令查看所有的本地分支：`git branch -al`
 
 ### `git tag`  
-git tag命令可以让开发者去标记开发过程中的关键节点，便于之后查看和管理。其本质是给某个log版本信息添加了一个别名，经常用在去给软件的某个发行版本做标记，比如V1.3.3。
+git tag命令可以让开发者去标记开发过程中的关键节点，便于之后查看和管理。其本质是给某个log版本信息添加了一个别名，经常用在去给软件的某个发行版本做标记，比如: V1.3.3。
 
 添加tag的信息两种方式：
 - 带有注解信息的
