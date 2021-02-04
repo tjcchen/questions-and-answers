@@ -611,6 +611,12 @@ const jsonp = ({ url, params, callback }) => {
 
 
 
+#### CORS( Cross-Origin Resource Sharing )
+
+Todo: 待补充
+
+
+
 **[⬆ 回到顶部](#目录结构)**
 
 ## 常见的网站攻击有哪些，如何通过编码做到相应的防护？
