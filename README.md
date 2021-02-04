@@ -593,8 +593,8 @@ const jsonp = ({ url, params, callback }) => {
 
   return new Promise((resolve, reject) => {
     const scriptEl = doc.createElement('script');
-    scriptEl.type = 'text/javascript';
-    scriptEl.src  = generateUrl();
+    scriptEl.type  = 'text/javascript';
+    scriptEl.src   = generateUrl();
 
     doc.body.appendChild(scriptEl);
     win[callback] = data => {
@@ -610,17 +610,15 @@ const jsonp = ({ url, params, callback }) => {
 注：该种类型的数据交互，需要客户端和服务器端的同时进行支持，才能够生效。具体演示，也可以参考该[链接](https://github.com/tjcchen/interviews/blob/aed8570337a07b0ff8f769d1c70a5bfd408a7eb5/Basics/jsonp.html)
 
 
-
 #### CORS( Cross-Origin Resource Sharing )
 
 Todo: 待补充
 
 
-
 #### Proxy代理
+使用代理(Proxy)的方式来实现跨域的数据资源共享，关键在于需要一台代理服务器。
 
 Todo: 待补充
-
 
 
 **[⬆ 回到顶部](#目录结构)**
