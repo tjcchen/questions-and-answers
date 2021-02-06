@@ -42,7 +42,7 @@
 
 ## 如何通过JavaScript实现继承？
 
-通过JavaScript实现继承。
+在JavaScript中，有两种方式可以实现类似Java语言当中的继承特性。一种是通过JS原型链( `prototype` )，另一种是通过ES6语法当中引入的Class概念的`extends`关键字。
 
 
 
