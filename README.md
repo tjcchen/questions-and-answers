@@ -84,7 +84,59 @@ console.log(child.print());    // name from Parent, type from Child
 
 2. ES6 `extends` 关键字
 
+在ES6当中，引入了class的概念。这使得子元素继承父元素的属性、方法变得更加容易，具体代码实现也和编程语言Java非常类似：
 
+```js
+/**
+ * Person Class
+ */
+class Person {
+  constructor(first, last, age, gender, interests) {
+    this.name = {
+      first,
+      last
+    };
+
+    this.age = age;
+    this.gender = gender;
+    this.interests = interests;
+  }
+
+  greeting() {
+    console.log(`Hi! I'm ${this.name.first}.`);
+  }
+
+  farewell() {
+    console.log(`${this.name.first} has left the building. Bye for now!`);
+  }
+}
+
+/**
+ * Teacher Class
+ */
+class Teacher extends Person {
+  constructor(first, last, age, gender, interests, subject, grade) {
+    super(first, last, age, gender, interests); // now 'this' is initialized by calling the parent constructor
+    this.subject = subject;
+    this.grade = grade;
+  }
+
+  teach() {
+    console.log(`I'm teaching ${this.subject}!`);
+  }
+}
+
+//---------------
+// Test Section
+//---------------
+const jimmy = new Teacher('jimmy', 'smith', 29, 'female', ['jogging'], 'math', 8);
+jimmy.greeting(); // Hi! I'm jimmy.
+jimmy.teach();    // I'm teaching math!
+```
+
+
+
+注意：jimmy实例的`greeting()`方法继承自父类Person，`teach()`方法来自自身的Teacher类。
 
 
 
