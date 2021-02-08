@@ -42,7 +42,49 @@
 
 ## 如何通过JavaScript实现继承？
 
-在JavaScript中，有两种方式可以实现类似Java语言当中的继承特性。一种是通过JS原型链( `prototype` )，另一种是通过ES6语法当中引入的Class概念的`extends`关键字。
+在JavaScript中，有两种方式可以实现类似Java编程语言当中的继承特性。一种是通过JS原型链( `prototype` )，另一种是通过ES6语法当中引入Class概念的`extends`关键字。
+
+1. JS原型链( `prototype` )
+
+我们直接通过代码来进行原理阐述:
+
+```js
+function Parent() {
+  this.name = 'name from Parent';
+}
+
+Parent.prototype.sayHello = function() {
+  return 'hello from Parent';
+};
+
+function Child() {
+  Parent.call(this);
+  this.type = 'type from Child';
+}
+
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+Child.prototype.print = function() {
+  return this.name + ', ' + this.type;
+};
+
+//////////////////////////
+// TEST SECTION
+//////////////////////////
+const child = new Child();
+console.log(child.sayHello()); // hello from Parent
+console.log(child.print());    // name from Parent, type from Child
+```
+
+
+
+注意：子类继承父类的属性通过`call()`方法，子类继承父类的方法通过原型链`prototype`。最后，我们还需要将子类的构造函数`constructor`指向自己。
+
+
+
+2. ES6 `extends` 关键字
+
+
 
 
 
