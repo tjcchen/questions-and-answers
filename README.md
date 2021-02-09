@@ -68,9 +68,9 @@ Child.prototype.print = function() {
   return this.name + ', ' + this.type;
 };
 
-//////////////////////////
+//----------------
 // TEST SECTION
-//////////////////////////
+//----------------
 const child = new Child();
 console.log(child.sayHello()); // hello from Parent
 console.log(child.print());    // name from Parent, type from Child
