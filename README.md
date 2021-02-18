@@ -26,6 +26,7 @@
 - [模块化编程CommonJS当中的module.exports和exports有什么区别？](#模块化编程commonjs当中的moduleexports和exports有什么区别)
 - [如何处理移动端页面1px问题？](#如何处理移动端页面1px问题)
 - [请你简述下Map, WeakMap, Set, WeakSet的异同，以及会在什么情况下用到他们？](#请你简述下map-weakmap-set-weakset的异同以及会在什么情况下用到他们)
+- [在JavaScript当中，eval函数和new Function有什么区别，在什么情况下会用到他们？](#在JavaScript当中-eval函数和new Function有什么区别-在什么情况下会用到他们)
 
 ## 说说你对闭包的理解?
 概念：延长嵌套函数中内部函数的作用域到外部函数的组合被称为闭包，当嵌套函数的外部函数被执行完成后，内部函数依旧可以访问外部函数中的变量。其实质是延长了函数的作用域链。
@@ -1072,6 +1073,14 @@ exports = function(initialState) { ... }; // 导出失败
 
 
 TODO: 待补充。。。
+
+**[⬆ 回到顶部](#目录结构)**
+
+
+
+## 在JavaScript当中，eval函数和new Function有什么区别，在什么情况下会用到他们?
+
+eval函数和new Function有什么区别
 
 
 
