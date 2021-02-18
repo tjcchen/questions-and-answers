@@ -25,7 +25,7 @@
 - [JavaScript中的for-in和for-of有什么区别？](#JavaScript中的for-in和for-of有什么区别)
 - [模块化编程CommonJS当中的module.exports和exports有什么区别？](#模块化编程commonjs当中的moduleexports和exports有什么区别)
 - [如何处理移动端页面1px问题？](#如何处理移动端页面1px问题)
-- [请你简述下Map，WeakMap，Set，WeakSet的异同，以及会在什么情况下用到他们？](#请你简述下map-weakmap-set-weakset的异同以及会在什么情况下用到他们)
+- [请你简述下Map, WeakMap, Set, WeakSet的异同，以及会在什么情况下用到他们？](#请你简述下map-weakmap-set-weakset的异同以及会在什么情况下用到他们)
 - [在JavaScript当中，eval函数和new Function有什么区别，以及会在什么情况下用到他们？](#在JavaScript当中eval函数和new-Function有什么区别以及会在什么情况下用到他们)
 
 ## 说说你对闭包的理解?
