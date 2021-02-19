@@ -1078,6 +1078,31 @@ TODO: 待补充。。。
 
 
 ## 在JavaScript当中，eval函数和new Function有什么区别，以及会在什么情况下用到他们？
-eval函数和new Function的区别
+`eval()`函数和`new Function`都是用来将字符串形式的JS代码转换成真正的代码进行执行的，但区别在于使用`eval()`声明的代码可以访问当前作用域的变量，而使用`new Function`进行定义的代码，只能访问全局定义的变量。具体可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/evalAndNewFunction.html)
+
+
+
+在以下两种情况下会用到`new Function`:
+
+1. 接收服务器端发回的JS代码，然后在客户端进行执行：
+
+```js
+let str = 'console.log("... receive the code or data from a server dynamically ...")';
+let func = new Function(str);
+func();
+```
+
+2. 在复杂的web应用当中，动态的从模板(`template`)中编译一个函数。
+3. 在浏览器和Node环境下，同时的去获取`global`对象:
+
+```js
+// IIFE
+(function(win) {
+  // Do something with the global
+  console.log(win);
+})(Function('return this')());
+```
+
+
 
 **[⬆ 回到顶部](#目录结构)**
