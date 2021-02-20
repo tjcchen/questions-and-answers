@@ -1082,7 +1082,7 @@ TODO: 待补充。。。
 
 
 
-在以下两种情况下会用到`new Function`:
+在以下几种情况下会用到`new Function`:
 
 1. 接收服务器端发回的JS代码，然后在客户端进行执行：
 
@@ -1102,6 +1102,13 @@ func();
   console.log(win);
 })(Function('return this')());
 ```
+
+
+
+在以下几种情况下会用到`eval()`函数:
+
+1. 某些在线输入JavaScript代码，并且实时显示执行结果的网站。
+2. 使用`eval()`函数来打印log信息，log信息包含变量名称，以及变量值等信息。具体可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/evalUseCase.html)
 
 
 
