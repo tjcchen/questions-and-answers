@@ -27,6 +27,7 @@
 - [如何处理移动端页面1px问题？](#如何处理移动端页面1px问题)
 - [请你简述下Map, WeakMap, Set, WeakSet的异同，以及会在什么情况下用到他们？](#请你简述下map-weakmap-set-weakset的异同以及会在什么情况下用到他们)
 - [在JavaScript当中，eval函数和new Function有什么区别，以及会在什么情况下用到他们？](#在JavaScript当中eval函数和new-Function有什么区别以及会在什么情况下用到他们)
+- 请说说你对事件循环(`Event Loop`)的理解？(#请说说你对事件循环(Event-Loop)的理解)
 
 ## 说说你对闭包的理解?
 概念：延长嵌套函数中内部函数的作用域到外部函数的组合被称为闭包，当嵌套函数的外部函数被执行完成后，内部函数依旧可以访问外部函数中的变量。其实质是延长了函数的作用域链。
@@ -1109,6 +1110,12 @@ func();
 
 1. 某些在线输入JavaScript代码，并且实时显示执行结果的网站。
 2. 使用`eval()`函数来打印log信息，log信息包含变量名称，以及变量值等信息。具体可参考该[链接](https://github.com/tjcchen/interviews/blob/master/Basics/evalUseCase.html)
+
+
+
+## 请说说你对事件循环(`Event Loop`)的理解？
+
+事件循环的理解
 
 
 
