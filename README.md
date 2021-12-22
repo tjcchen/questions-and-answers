@@ -860,10 +860,6 @@ CSS:
 .container {
   display: flex;
   flex-direction: row; /* 默认方向为row，会横向展示item的内容; 另一个direction为column */
-
-  /* 下面内容做属性值参考，先给注释掉 */
-  /* flex-wrap: wrap; 浏览器宽度缩小会换行 */
-  /* align-items: stretch; 默认值，会纵向撑慢容器；其他值还有 flex-start, flex-end, center */
 }
 
 .container .item1 {
@@ -884,28 +880,6 @@ Grid布局也可以很容易的实现响应式布局，Grid的基本理念为将
   display: grid;
   grid-template-columns: 300px 200px 300px; /* 指明一共有三列，第一列300px，第二列200px，第三列300px */
   grid-template-rows: 200px 100px;          /* 指明一共有两行，第一行200px，第二行100px */
-
-  /* 下面内容做属性值参考，先给注释掉 */
-  /* 如果有多列，每列宽度一行，也可使用repeat来做重复，下例中的4代码重复4次，即4列 */
-  /* grid-template-columns: repeat(4, 300px); */
-
-  /* 该属性设置有三列，左列宽度固定，为220px，中间列宽度1个fraction，右列宽度为auto为自动填充 */
-  /* 其中 1fr 为一个新单位，为1个fraction，会去占用父元素的剩下可用空间；2fr代表会占用1fr的两倍空间 */
-  /* grid-template-columns: 220px 1fr auto; */
-
-  /* auto-fit属性会去自动伸缩子元素宽度去填满容器 */
-  /* 而 auto-fill 会去使用空元素占位置填满剩余的空间 */
-  /* grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); */
-
-  /* 该属性会去自动使用子元素填满父容器，当元素跨行/列的子元素所占宽高不合理时 */
-  /* grid-auto-flow: dense; */
- 
-  /* 该属性设置默认行的高度，最小高度为150px */
-  /* grid-auto-rows: minmax(150px, auto); */
-
-  /* 设置网格间距，使用gap */
-  /* 等于gap-row: 10px; gap-column: 20px; */
-  /* gap: 10px 20px; */
 }
 ```
 2. 第二步要在子元素中，设置每个元素所占的网格数，例如：
