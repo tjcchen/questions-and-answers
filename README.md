@@ -217,8 +217,46 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
 
 ## 如何使用CSS实现三角形
 其原理是使用border特性实现
-
-
+1. 上三角
+```css
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+```
+2. 下三角
+```css
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #f00;
+}
+```
+3. 左三角
+```css
+.arrow-left {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-right:10px solid blue; 
+}
+```
+4. 右三角
+```css
+.arrow-right {
+  width: 0; 
+  height: 0; 
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid green;
+}
+```
 **[⬆ 回到顶部](#目录结构)**
 
 ## 如何使用CSS实现文字居中效果？
