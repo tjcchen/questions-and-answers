@@ -234,7 +234,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
   height: 0; 
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid #f00;
+  border-top: 10px solid #F00;
 }
 ```
 3. 左三角
@@ -244,7 +244,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
   height: 0; 
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; 
-  border-right:10px solid #0f0; 
+  border-right:10px solid #0F0; 
 }
 ```
 4. 右三角
@@ -254,7 +254,7 @@ BFC是（Block Formatting Context）的缩写，被称作“块级格式化上�
   height: 0; 
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 10px solid #00f;
+  border-left: 10px solid #00F;
 }
 ```
 **[⬆ 回到顶部](#目录结构)**
