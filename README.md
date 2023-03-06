@@ -395,7 +395,7 @@ https://developer.yahoo.com/performance/rules.html
 
 6. 做网页SEO、HTML结构语义化
 - 给网站添加description、keyword等meta标签，让搜索引擎更易爬取到页面内容
-- 前端工程师在写html结构时，应该注意代码结构的语义化，在适当的位置使用`h1-2标签`、`a标签`、`图片alt属性`等
+- 前端工程师在写html结构时，应该注意代码结构的语义化，在适当的位置使用`h标签`、`a标签`、`图片alt属性`等
 
 **[⬆ 回到顶部](#目录结构)**
 
